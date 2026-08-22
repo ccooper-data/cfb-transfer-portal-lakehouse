@@ -21,6 +21,8 @@ variables:
     description: Workspace/Volume path to resolved long-form player stats JSONL.
   feature_matrix_path:
     description: Workspace/Volume path to full player production feature matrix JSONL.
+  outcome_modeling_v2_path:
+    description: Workspace/Volume path to the v2 outcome-observed modeling CSV.
 
 targets:
   dev:
