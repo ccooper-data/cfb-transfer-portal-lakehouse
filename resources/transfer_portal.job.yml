@@ -65,3 +65,15 @@ resources:
               outcome_modeling_v2_path: ${var.outcome_modeling_v2_path}
               catalog: ${var.catalog}
               schema: ${var.schema}
+        - task_key: gold_player_predictions_2026_v2
+          depends_on:
+            - task_key: gold_player_outcome_observed_modeling_v2
+          notebook_task:
+            notebook_path: ../databricks/notebooks/08_gold_player_predictions_2026_v2.py
+            base_parameters:
+              scoring_cohort_2026_v2_path: ${var.scoring_cohort_2026_v2_path}
+              scoring_exclusions_2026_v2_path: ${var.scoring_exclusions_2026_v2_path}
+              predictions_2026_v2_path: ${var.predictions_2026_v2_path}
+              predictions_2026_v2_summary_path: ${var.predictions_2026_v2_summary_path}
+              catalog: ${var.catalog}
+              schema: ${var.schema}

@@ -23,6 +23,14 @@ variables:
     description: Workspace/Volume path to full player production feature matrix JSONL.
   outcome_modeling_v2_path:
     description: Workspace/Volume path to the v2 outcome-observed modeling CSV.
+  scoring_cohort_2026_v2_path:
+    description: Workspace/Volume path to the frozen 2026 v2 scoring cohort CSV.
+  scoring_exclusions_2026_v2_path:
+    description: Workspace/Volume path to the frozen 2026 v2 scoring exclusions CSV.
+  predictions_2026_v2_path:
+    description: Workspace/Volume path to the frozen first 2026 v2 predictions CSV.
+  predictions_2026_v2_summary_path:
+    description: Workspace/Volume path to the frozen first 2026 v2 prediction summary JSON.
 
 targets:
   dev:
