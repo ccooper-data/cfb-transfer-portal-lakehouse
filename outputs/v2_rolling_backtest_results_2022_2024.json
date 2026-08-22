@@ -1,0 +1,1222 @@
+{
+  "all_row_wins_vs_historical_mean": 16,
+  "evaluated_group_folds": 20,
+  "evaluation_design": {
+    "causal_claim": false,
+    "evidence_backtest_years": [
+      2022,
+      2023,
+      2024
+    ],
+    "excluded_from_primary_v2_evidence": [
+      2025
+    ],
+    "exclusion_reason_2025": "2025 was already inspected under the locked v1 evaluation; it is not treated as fresh untouched v2 test evidence",
+    "hyperparameter_selection": "expanding-year validation within each fold's training years only; default alpha 10.0 when no internal validation year is available",
+    "minimum_holdout_rows": 20,
+    "minimum_train_rows": 40,
+    "missing_pre_policy": "retain rows; training-fold median imputation plus explicit missingness channel per numeric feature",
+    "post_transfer_predictors": "prohibited",
+    "primary_baseline": "position-specific historical mean post-transfer production computed from the fold training period; available for every row",
+    "secondary_baseline": "returning production on the observed-pre-anchor subset only",
+    "training_rule": "for holdout year Y, train only on seasons < Y"
+  },
+  "fold_results": [
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 18.47089634197854,
+        "r2": -0.0018704273542418104,
+        "rmse": 22.3656625751994
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.05327997978344989,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 17.486767358295726,
+        "r2": 0.03273087849366196,
+        "rmse": 21.97605086839817
+      },
+      "chosen_alpha": 10.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": null,
+        "1.0": null,
+        "10.0": NaN,
+        "100.0": null,
+        "1000.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "pre_interceptions_yds",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 178,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "DB",
+      "paired_mae_skill_vs_returning_production": 0.13585623079200426,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 20.335714285714285,
+        "r2": -0.5162952397725202,
+        "rmse": 27.09282983690387
+      },
+      "paired_ridge_v2": {
+        "mae": 17.572980792394027,
+        "r2": -0.01632683491882947,
+        "rmse": 22.18090081986319
+      },
+      "paired_rows_with_observed_pre_anchor": 140,
+      "status": "evaluated",
+      "train_rows": 133
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 10.955525606469003,
+        "r2": -0.008306253474257064,
+        "rmse": 14.556719212007454
+      },
+      "all_row_mae_skill_vs_historical_mean": -0.12487813811209447,
+      "all_row_model_beats_historical_mean_mae": false,
+      "all_row_ridge_v2": {
+        "mae": 12.323631246244227,
+        "r2": -0.22422752512170407,
+        "rmse": 16.039777680288264
+      },
+      "chosen_alpha": 10.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": null,
+        "1.0": null,
+        "10.0": NaN,
+        "100.0": null,
+        "1000.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 84,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "DL",
+      "paired_mae_skill_vs_returning_production": 0.04651601571737318,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 12.925373134328359,
+        "r2": -0.6131841777244831,
+        "rmse": 16.532193830094688
+      },
+      "paired_ridge_v2": {
+        "mae": 12.324136274459027,
+        "r2": -0.378938683315845,
+        "rmse": 15.284843244072823
+      },
+      "paired_rows_with_observed_pre_anchor": 67,
+      "status": "evaluated",
+      "train_rows": 53
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 16,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "EDGE",
+      "status": "skipped_low_sample",
+      "train_rows": 4
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 28.39473684210526,
+        "r2": -0.014325260206393464,
+        "rmse": 33.39384288457279
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.02226427874212933,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 27.76254850624322,
+        "r2": -0.008741436571705563,
+        "rmse": 33.30180009195262
+      },
+      "chosen_alpha": 10.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": null,
+        "1.0": null,
+        "10.0": NaN,
+        "100.0": null,
+        "1000.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 102,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "LB",
+      "paired_mae_skill_vs_returning_production": 0.03139925669155841,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 29.426666666666666,
+        "r2": -0.33780098175579076,
+        "rmse": 38.418571897803105
+      },
+      "paired_ridge_v2": {
+        "mae": 28.502691206423073,
+        "r2": -0.04495563324691654,
+        "rmse": 33.95426921641142
+      },
+      "paired_rows_with_observed_pre_anchor": 75,
+      "status": "evaluated",
+      "train_rows": 57
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_punting_no",
+        "pre_punting_yds",
+        "pre_punting_long",
+        "pre_punting_in_20",
+        "pre_punting_tb",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 13,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "P",
+      "status": "skipped_low_sample",
+      "train_rows": 4
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_passing_att",
+        "pre_passing_completions",
+        "pre_passing_td",
+        "pre_passing_int",
+        "pre_passing_pct",
+        "pre_passing_ypa",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 94,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "QB",
+      "status": "skipped_low_sample",
+      "train_rows": 36
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 293.7689298043728,
+        "r2": -0.006534932911092417,
+        "rmse": 353.2616818501322
+      },
+      "all_row_mae_skill_vs_historical_mean": -0.0672343373947133,
+      "all_row_model_beats_historical_mean_mae": false,
+      "all_row_ridge_v2": {
+        "mae": 313.52028914692386,
+        "r2": -0.2183363048386553,
+        "rmse": 388.6562885392108
+      },
+      "chosen_alpha": 10.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": null,
+        "1.0": null,
+        "10.0": NaN,
+        "100.0": null,
+        "1000.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_rushing_car",
+        "pre_rushing_td",
+        "pre_rushing_ypc",
+        "pre_receiving_rec",
+        "pre_receiving_yds",
+        "pre_receiving_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 79,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "RB",
+      "paired_mae_skill_vs_returning_production": -0.04528532787536488,
+      "paired_model_beats_returning_production_mae": false,
+      "paired_returning_production_baseline": {
+        "mae": 306.55,
+        "r2": -0.585374902276254,
+        "rmse": 421.04356465018355
+      },
+      "paired_ridge_v2": {
+        "mae": 320.4322172601931,
+        "r2": -0.40251628162365827,
+        "rmse": 396.01806765282606
+      },
+      "paired_rows_with_observed_pre_anchor": 60,
+      "status": "evaluated",
+      "train_rows": 55
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 35,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "TE",
+      "status": "skipped_low_sample",
+      "train_rows": 15
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 265.5413907284768,
+        "r2": -0.0074395345863100815,
+        "rmse": 325.0783294718878
+      },
+      "all_row_mae_skill_vs_historical_mean": -0.12306917195758671,
+      "all_row_model_beats_historical_mean_mae": false,
+      "all_row_ridge_v2": {
+        "mae": 298.22134980589647,
+        "r2": -0.39986886734865656,
+        "rmse": 383.19708964978656
+      },
+      "chosen_alpha": 10.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": null,
+        "1.0": null,
+        "10.0": NaN,
+        "100.0": null,
+        "1000.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 151,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "WR",
+      "paired_mae_skill_vs_returning_production": -0.15093600997181977,
+      "paired_model_beats_returning_production_mae": false,
+      "paired_returning_production_baseline": {
+        "mae": 276.81666666666666,
+        "r2": -0.28746177136675133,
+        "rmse": 372.4593937599104
+      },
+      "paired_ridge_v2": {
+        "mae": 318.5982698270326,
+        "r2": -0.5205948042574182,
+        "rmse": 404.779502187467
+      },
+      "paired_rows_with_observed_pre_anchor": 120,
+      "status": "evaluated",
+      "train_rows": 104
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 20.090212459055802,
+        "r2": -0.015000650280930339,
+        "rmse": 25.15645594903205
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.06580941661332251,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 18.768087297487636,
+        "r2": 0.10514645962772595,
+        "rmse": 23.620673556521936
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 17.815068648104575,
+        "1.0": 17.75452628965392,
+        "10.0": 17.486767358295726,
+        "100.0": 17.32763958772991,
+        "1000.0": 17.943060866588326
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "pre_interceptions_yds",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 214,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "DB",
+      "paired_mae_skill_vs_returning_production": 0.10219846296244928,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 21.84795321637427,
+        "r2": -0.3472699015037779,
+        "rmse": 29.58583508077642
+      },
+      "paired_ridge_v2": {
+        "mae": 19.61512597878532,
+        "r2": 0.06757995032735575,
+        "rmse": 24.612874089344043
+      },
+      "paired_rows_with_observed_pre_anchor": 171,
+      "status": "evaluated",
+      "train_rows": 311
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 10.034554342730864,
+        "r2": -0.005792701189627936,
+        "rmse": 12.448931078088801
+      },
+      "all_row_mae_skill_vs_historical_mean": -0.01570447791507701,
+      "all_row_model_beats_historical_mean_mae": false,
+      "all_row_ridge_v2": {
+        "mae": 10.192141779793921,
+        "r2": 0.02265065593255533,
+        "rmse": 12.271643651521606
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 15.803578320968235,
+        "1.0": 14.724597461802581,
+        "10.0": 12.323631246244227,
+        "100.0": 10.826474855922102,
+        "1000.0": 10.872543168445112
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 109,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "DL",
+      "paired_mae_skill_vs_returning_production": 0.21107347982530866,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 12.829545454545455,
+        "r2": -0.7161875347458151,
+        "rmse": 16.403644273591933
+      },
+      "paired_ridge_v2": {
+        "mae": 10.121568650877574,
+        "r2": 0.021678271147411388,
+        "rmse": 12.385080131214755
+      },
+      "paired_rows_with_observed_pre_anchor": 88,
+      "status": "evaluated",
+      "train_rows": 137
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 21,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "EDGE",
+      "status": "skipped_low_sample",
+      "train_rows": 20
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 24.217464925012095,
+        "r2": -2.944957666617398e-07,
+        "rmse": 28.527915375107092
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.07620919831184192,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 22.371871337931772,
+        "r2": 0.1120799758425911,
+        "rmse": 26.881710438698118
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 32.334989041188585,
+        "1.0": 30.662744686998778,
+        "10.0": 27.76254850624322,
+        "100.0": 25.85194477595886,
+        "1000.0": 27.071911887963076
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 104,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "LB",
+      "paired_mae_skill_vs_returning_production": 0.06901655079859137,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 23.686746987951807,
+        "r2": -0.23663515648227418,
+        "rmse": 31.658570091540202
+      },
+      "paired_ridge_v2": {
+        "mae": 22.05196941120445,
+        "r2": 0.11052428099338707,
+        "rmse": 26.849583272960697
+      },
+      "paired_rows_with_observed_pre_anchor": 83,
+      "status": "evaluated",
+      "train_rows": 159
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_punting_no",
+        "pre_punting_yds",
+        "pre_punting_long",
+        "pre_punting_in_20",
+        "pre_punting_tb",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 9,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "P",
+      "status": "skipped_low_sample",
+      "train_rows": 17
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 986.5720202874049,
+        "r2": -0.002254938455638955,
+        "rmse": 1137.0871880507134
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.09615026138578397,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 891.71286266087,
+        "r2": 0.1230423715607456,
+        "rmse": 1063.6383041619056
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 1381.1213826333753,
+        "1.0": 1341.7746861420176,
+        "10.0": 1210.0827565705863,
+        "100.0": 1124.6106471914773,
+        "1000.0": 1136.3135868836275
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_passing_att",
+        "pre_passing_completions",
+        "pre_passing_td",
+        "pre_passing_int",
+        "pre_passing_pct",
+        "pre_passing_ypa",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 91,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "QB",
+      "paired_mae_skill_vs_returning_production": 0.12692048767955155,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 1068.5797101449275,
+        "r2": -0.42605201892689815,
+        "rmse": 1362.2362688513006
+      },
+      "paired_ridge_v2": {
+        "mae": 932.9550522088595,
+        "r2": 0.08008416598666956,
+        "rmse": 1094.1044946901607
+      },
+      "paired_rows_with_observed_pre_anchor": 69,
+      "status": "evaluated",
+      "train_rows": 130
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 291.8402985074627,
+        "r2": -0.0007132318638667368,
+        "rmse": 348.86465596557025
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.06834089807093302,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 271.89567041417354,
+        "r2": 0.11383343340786145,
+        "rmse": 328.2916463773592
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 377.432570150638,
+        "1.0": 363.41638436924336,
+        "10.0": 313.52028914692386,
+        "100.0": 267.8772786333489,
+        "1000.0": 285.3270769677039
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_rushing_car",
+        "pre_rushing_td",
+        "pre_rushing_ypc",
+        "pre_receiving_rec",
+        "pre_receiving_yds",
+        "pre_receiving_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 90,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "RB",
+      "paired_mae_skill_vs_returning_production": 0.07705858441061586,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 302.97402597402595,
+        "r2": -0.22573015522841544,
+        "rmse": 399.15984820067314
+      },
+      "paired_ridge_v2": {
+        "mae": 279.62727641928234,
+        "r2": 0.1165896068877944,
+        "rmse": 338.86808283452825
+      },
+      "paired_rows_with_observed_pre_anchor": 77,
+      "status": "evaluated",
+      "train_rows": 134
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 115.54181818181819,
+        "r2": -0.0001111073584321165,
+        "rmse": 151.80032339167852
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.09780286102156155,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 104.24149779600329,
+        "r2": 0.023861279223986953,
+        "rmse": 149.96998279683797
+      },
+      "chosen_alpha": 10.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": null,
+        "1.0": null,
+        "10.0": null,
+        "100.0": null,
+        "1000.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 55,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "TE",
+      "paired_mae_skill_vs_returning_production": 0.06660536306253872,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 118.23809523809524,
+        "r2": -0.39597016009919894,
+        "rmse": 190.95013061255648
+      },
+      "paired_ridge_v2": {
+        "mae": 110.36280397693888,
+        "r2": -0.016771861570231472,
+        "rmse": 162.96474136615413
+      },
+      "paired_rows_with_observed_pre_anchor": 42,
+      "status": "evaluated",
+      "train_rows": 50
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 223.76949655537894,
+        "r2": -0.014582623303910358,
+        "rmse": 271.655355301086
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.013811876447188953,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 220.67881991630637,
+        "r2": 0.0385992820474409,
+        "rmse": 264.4397768818757
+      },
+      "chosen_alpha": 1000.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 319.24919472023026,
+        "1.0": 314.00401573704397,
+        "10.0": 298.22134980589647,
+        "100.0": 254.30138836116683,
+        "1000.0": 242.30526628924284
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 185,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "WR",
+      "paired_mae_skill_vs_returning_production": 0.16418044899183548,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 269.7843137254902,
+        "r2": -0.6340303718354396,
+        "rmse": 354.65088237027277
+      },
+      "paired_ridge_v2": {
+        "mae": 225.49100396708502,
+        "r2": 0.028186432233699987,
+        "rmse": 273.503231184266
+      },
+      "paired_rows_with_observed_pre_anchor": 153,
+      "status": "evaluated",
+      "train_rows": 255
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 18.325827160493827,
+        "r2": -0.0034309573161328544,
+        "rmse": 22.200075322360238
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.059514639678079684,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 17.23517216023427,
+        "r2": 0.082458310926255,
+        "rmse": 21.228709941984913
+      },
+      "chosen_alpha": 10.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 18.191127977822365,
+        "1.0": 18.171170452849843,
+        "10.0": 18.095438798920426,
+        "100.0": 18.114006449689484,
+        "1000.0": 18.688642973405855
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "pre_interceptions_yds",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 405,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "DB",
+      "paired_mae_skill_vs_returning_production": 0.1491017488019034,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 20.396825396825395,
+        "r2": -0.5185268579527449,
+        "rmse": 26.978945347501856
+      },
+      "paired_ridge_v2": {
+        "mae": 17.35562306015165,
+        "r2": 0.06659666882273008,
+        "rmse": 21.151852182485992
+      },
+      "paired_rows_with_observed_pre_anchor": 315,
+      "status": "evaluated",
+      "train_rows": 525
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 11.27353113737323,
+        "r2": -0.003056178367520701,
+        "rmse": 13.52850375276209
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.0421818848369675,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 10.797992345230584,
+        "r2": 0.07261314184325718,
+        "rmse": 13.008212007815478
+      },
+      "chosen_alpha": 1000.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 12.618386784514165,
+        "1.0": 12.145040352752611,
+        "10.0": 11.201689900397612,
+        "100.0": 10.468224569404114,
+        "1000.0": 10.39091545064647
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 194,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "DL",
+      "paired_mae_skill_vs_returning_production": 0.1655030180542275,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 12.319444444444445,
+        "r2": -0.429599695897541,
+        "rmse": 15.355057075041362
+      },
+      "paired_ridge_v2": {
+        "mae": 10.280539208137503,
+        "r2": 0.08963728277921357,
+        "rmse": 12.253254198619565
+      },
+      "paired_rows_with_observed_pre_anchor": 144,
+      "status": "evaluated",
+      "train_rows": 246
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 12.026789284286286,
+        "r2": -0.004238028950737327,
+        "rmse": 14.27326828633691
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.020969818522882266,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 11.774589695581858,
+        "r2": -0.058221671951090626,
+        "rmse": 14.651882360649143
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 12.558348193239185,
+        "1.0": 12.030169917344072,
+        "10.0": 9.576390783769874,
+        "100.0": 6.831341928711186,
+        "1000.0": 9.032232199155752
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 61,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "EDGE",
+      "paired_mae_skill_vs_returning_production": 0.27347594583103463,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 17.023255813953487,
+        "r2": -1.5052528850871392,
+        "rmse": 22.541950556323226
+      },
+      "paired_ridge_v2": {
+        "mae": 12.367804829108898,
+        "r2": -0.20069302156057667,
+        "rmse": 15.605644186715658
+      },
+      "paired_rows_with_observed_pre_anchor": 43,
+      "status": "evaluated",
+      "train_rows": 41
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 27.599792602834427,
+        "r2": -0.00022662693311259474,
+        "rmse": 33.354250470707655
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.05652130934293276,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 26.039816187328835,
+        "r2": 0.07268867200698637,
+        "rmse": 32.11550551735666
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 28.461761505769896,
+        "1.0": 27.504300343401326,
+        "10.0": 25.573662040118258,
+        "100.0": 24.09501449656654,
+        "1000.0": 25.000559331617335
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 165,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "LB",
+      "paired_mae_skill_vs_returning_production": 0.10689239296434405,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 27.53543307086614,
+        "r2": -0.45310961956006013,
+        "rmse": 37.408891948979104
+      },
+      "paired_ridge_v2": {
+        "mae": 24.592104738611724,
+        "r2": 0.12142478341739138,
+        "rmse": 29.088084945649562
+      },
+      "paired_rows_with_observed_pre_anchor": 127,
+      "status": "evaluated",
+      "train_rows": 263
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_punting_no",
+        "pre_punting_yds",
+        "pre_punting_long",
+        "pre_punting_in_20",
+        "pre_punting_tb",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 15,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "P",
+      "status": "skipped_low_sample",
+      "train_rows": 26
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 1009.1573063614586,
+        "r2": -0.015973418354341407,
+        "rmse": 1156.6583567202013
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.0990367249316676,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 909.2136717985562,
+        "r2": 0.18312367271222252,
+        "rmse": 1037.15121998992
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 1185.0727775065848,
+        "1.0": 1155.5455042320295,
+        "10.0": 1072.6532304732855,
+        "100.0": 1010.0501153412866,
+        "1000.0": 1028.599961106051
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_passing_att",
+        "pre_passing_completions",
+        "pre_passing_td",
+        "pre_passing_int",
+        "pre_passing_pct",
+        "pre_passing_ypa",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 136,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "QB",
+      "paired_mae_skill_vs_returning_production": 0.02988732437766206,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 1008.3490566037735,
+        "r2": -0.17104103719598251,
+        "rmse": 1302.7205604006433
+      },
+      "paired_ridge_v2": {
+        "mae": 978.212201263147,
+        "r2": 0.15641532803829228,
+        "rmse": 1105.6802451735903
+      },
+      "paired_rows_with_observed_pre_anchor": 106,
+      "status": "evaluated",
+      "train_rows": 221
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 286.53046875,
+        "r2": -0.009574327765274226,
+        "rmse": 332.9622430147861
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.044678390433602555,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 273.72874859606435,
+        "r2": 0.05623421348966495,
+        "rmse": 321.92740875114816
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 329.64125688513235,
+        "1.0": 322.70324381697833,
+        "10.0": 297.2910687663304,
+        "100.0": 270.0172505876342,
+        "1000.0": 281.8789772497494
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_rushing_car",
+        "pre_rushing_td",
+        "pre_rushing_ypc",
+        "pre_receiving_rec",
+        "pre_receiving_yds",
+        "pre_receiving_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 160,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "RB",
+      "paired_mae_skill_vs_returning_production": 0.09994492048038084,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 314.780303030303,
+        "r2": -0.513626502890157,
+        "rmse": 416.4955982160356
+      },
+      "paired_ridge_v2": {
+        "mae": 283.3196106751492,
+        "r2": 0.036226736149683414,
+        "rmse": 332.34449642898835
+      },
+      "paired_rows_with_observed_pre_anchor": 132,
+      "status": "evaluated",
+      "train_rows": 224
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 120.01418650793651,
+        "r2": -0.0034038468924086906,
+        "rmse": 149.6847121732544
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.08849792466076956,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 109.3931800721336,
+        "r2": 0.13287304330963468,
+        "rmse": 139.1492626895421
+      },
+      "chosen_alpha": 100.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 172.9645666506896,
+        "1.0": 135.5192223035402,
+        "10.0": 104.24149779600329,
+        "100.0": 99.58295071422049,
+        "1000.0": 109.70942606654965
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 96,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "TE",
+      "paired_mae_skill_vs_returning_production": 0.035130157269541495,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 114.95238095238095,
+        "r2": -0.04891242266425655,
+        "rmse": 157.8656249965633
+      },
+      "paired_ridge_v2": {
+        "mae": 110.91408573101556,
+        "r2": 0.14167002587954536,
+        "rmse": 142.8055539910655
+      },
+      "paired_rows_with_observed_pre_anchor": 63,
+      "status": "evaluated",
+      "train_rows": 105
+    },
+    {
+      "all_row_historical_mean_baseline": {
+        "mae": 233.34223081882658,
+        "r2": -0.027642815156307288,
+        "rmse": 280.5149182839876
+      },
+      "all_row_mae_skill_vs_historical_mean": 0.020595410011067905,
+      "all_row_model_beats_historical_mean_mae": true,
+      "all_row_ridge_v2": {
+        "mae": 228.5364519022156,
+        "r2": 0.00921359887849027,
+        "rmse": 275.4386532489521
+      },
+      "chosen_alpha": 1000.0,
+      "expanding_validation_mae_by_alpha": {
+        "0.1": 279.23643484940555,
+        "1.0": 276.77701441288815,
+        "10.0": 268.3328158162536,
+        "100.0": 242.061614395065,
+        "1000.0": 230.397847899382
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_rows": 282,
+      "holdout_year": 2024,
+      "minimum_holdout_rows": 20,
+      "minimum_train_rows": 40,
+      "model_position_group": "WR",
+      "paired_mae_skill_vs_returning_production": 0.18466134425639946,
+      "paired_model_beats_returning_production_mae": true,
+      "paired_returning_production_baseline": {
+        "mae": 287.212962962963,
+        "r2": -0.7658935474911936,
+        "rmse": 377.1385073201936
+      },
+      "paired_ridge_v2": {
+        "mae": 234.1758311343588,
+        "r2": -0.008699993544690088,
+        "rmse": 285.03594239874315
+      },
+      "paired_rows_with_observed_pre_anchor": 216,
+      "status": "evaluated",
+      "train_rows": 440
+    }
+  ],
+  "paired_subset_wins_vs_returning_production": 18,
+  "prediction_rows": 2941,
+  "skipped_group_folds": 7,
+  "source_rows_all_seasons": 5631,
+  "source_rows_primary_backtest_period": 3605
+}

@@ -1,0 +1,367 @@
+{
+  "cohort": {
+    "by_position_group": {
+      "DB": {
+        "pre_anchor_missing": 130,
+        "pre_anchor_observed": 426,
+        "scoreable_rows": 556,
+        "source_rows": 556
+      },
+      "DL": {
+        "pre_anchor_missing": 89,
+        "pre_anchor_observed": 206,
+        "scoreable_rows": 295,
+        "source_rows": 295
+      },
+      "EDGE": {
+        "pre_anchor_missing": 26,
+        "pre_anchor_observed": 88,
+        "scoreable_rows": 114,
+        "source_rows": 114
+      },
+      "LB": {
+        "pre_anchor_missing": 36,
+        "pre_anchor_observed": 172,
+        "scoreable_rows": 208,
+        "source_rows": 208
+      },
+      "LS": {
+        "excluded_unsupported_position": 47,
+        "source_rows": 47
+      },
+      "OL": {
+        "excluded_unsupported_position": 458,
+        "source_rows": 458
+      },
+      "P": {
+        "excluded_insufficient_validation_evidence": 57,
+        "source_rows": 57
+      },
+      "QB": {
+        "pre_anchor_missing": 32,
+        "pre_anchor_observed": 129,
+        "scoreable_rows": 161,
+        "source_rows": 161
+      },
+      "RB": {
+        "pre_anchor_missing": 25,
+        "pre_anchor_observed": 178,
+        "scoreable_rows": 203,
+        "source_rows": 203
+      },
+      "TE": {
+        "pre_anchor_missing": 45,
+        "pre_anchor_observed": 119,
+        "scoreable_rows": 164,
+        "source_rows": 164
+      },
+      "WR": {
+        "pre_anchor_missing": 86,
+        "pre_anchor_observed": 287,
+        "scoreable_rows": 373,
+        "source_rows": 373
+      }
+    },
+    "excluded_rows": 562,
+    "policy": {
+      "causal_claim": false,
+      "missing_pre_policy": "retain row; same training-fold median imputation and explicit missingness channels used by locked v2 model",
+      "outcome_requirement": "none; 2026 outcomes are right-censored",
+      "post_transfer_predictors": "prohibited",
+      "scoreable_group_rule": "must have evaluable locked v2 rolling-backtest evidence"
+    },
+    "pre_anchor_missing_rows": 469,
+    "pre_anchor_observed_rows": 1605,
+    "scoreable_groups": [
+      "DB",
+      "DL",
+      "EDGE",
+      "LB",
+      "QB",
+      "RB",
+      "TE",
+      "WR"
+    ],
+    "scoreable_rows": 2074,
+    "scoring_season": 2026
+  },
+  "scoring": {
+    "governance": {
+      "2025_role": "development/final-training data only; not fresh v2 test evidence",
+      "2026_outcome_used": false,
+      "accuracy_claim_for_2026": "none until outcomes are observed",
+      "causal_claim": false,
+      "locked_backtest_modified": false,
+      "prediction_interpretation": "forecast of position-specific post-transfer production anchor"
+    },
+    "models": {
+      "DB": {
+        "chosen_alpha": 10.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 17.677490972566243,
+          "1.0": 17.668388551662307,
+          "10.0": 17.6362622921503,
+          "100.0": 17.66655091778473,
+          "1000.0": 18.039935394830476
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_defensive_solo",
+          "pre_defensive_tfl",
+          "pre_defensive_sacks",
+          "pre_defensive_pd",
+          "pre_interceptions_int",
+          "pre_interceptions_yds",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 556,
+        "status": "scored",
+        "training_rows": 1479,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "DL": {
+        "chosen_alpha": 100.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 11.568888194614122,
+          "1.0": 11.313918596163798,
+          "10.0": 10.651912799069516,
+          "100.0": 10.313847460621789,
+          "1000.0": 10.37717197843502
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_defensive_solo",
+          "pre_defensive_tfl",
+          "pre_defensive_sacks",
+          "pre_defensive_qb_hur",
+          "pre_defensive_pd",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 295,
+        "status": "scored",
+        "training_rows": 711,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "EDGE": {
+        "chosen_alpha": 100.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 11.794610119795243,
+          "1.0": 11.484351660997195,
+          "10.0": 10.913838373629218,
+          "100.0": 10.47929392355198,
+          "1000.0": 11.049947495779513
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_defensive_solo",
+          "pre_defensive_tfl",
+          "pre_defensive_sacks",
+          "pre_defensive_qb_hur",
+          "pre_defensive_pd",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 114,
+        "status": "scored",
+        "training_rows": 180,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "LB": {
+        "chosen_alpha": 100.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 26.828200901225863,
+          "1.0": 26.476334852283973,
+          "10.0": 25.739106298159736,
+          "100.0": 25.298874266437775,
+          "1000.0": 25.743161433318985
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_defensive_solo",
+          "pre_defensive_tfl",
+          "pre_defensive_sacks",
+          "pre_defensive_qb_hur",
+          "pre_defensive_pd",
+          "pre_interceptions_int",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 208,
+        "status": "scored",
+        "training_rows": 645,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "QB": {
+        "chosen_alpha": 100.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 980.8924901055826,
+          "1.0": 970.0667529357088,
+          "10.0": 939.6017876341115,
+          "100.0": 919.5877672200342,
+          "1000.0": 945.2847415776309
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_passing_att",
+          "pre_passing_completions",
+          "pre_passing_td",
+          "pre_passing_int",
+          "pre_passing_pct",
+          "pre_passing_ypa",
+          "pre_rushing_yds",
+          "pre_rushing_td",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 161,
+        "status": "scored",
+        "training_rows": 524,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "RB": {
+        "chosen_alpha": 100.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 293.7501915111381,
+          "1.0": 291.36209202857157,
+          "10.0": 282.432248061815,
+          "100.0": 272.3496597313904,
+          "1000.0": 275.2966972657877
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_rushing_car",
+          "pre_rushing_td",
+          "pre_rushing_ypc",
+          "pre_receiving_rec",
+          "pre_receiving_yds",
+          "pre_receiving_td",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 203,
+        "status": "scored",
+        "training_rows": 575,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "TE": {
+        "chosen_alpha": 100.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 121.35880121930124,
+          "1.0": 114.05169860915743,
+          "10.0": 106.83060266573722,
+          "100.0": 106.39979135838885,
+          "1000.0": 114.01109651557924
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_receiving_rec",
+          "pre_receiving_td",
+          "pre_receiving_ypr",
+          "pre_receiving_long",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 164,
+        "status": "scored",
+        "training_rows": 357,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      },
+      "WR": {
+        "chosen_alpha": 1000.0,
+        "expanding_validation_mae_by_alpha": {
+          "0.1": 236.76873582477415,
+          "1.0": 235.912898624994,
+          "10.0": 232.90430120446715,
+          "100.0": 223.55810699860908,
+          "1000.0": 222.14228276816084
+        },
+        "features": [
+          "baseline_pre_production",
+          "pre_receiving_rec",
+          "pre_receiving_td",
+          "pre_receiving_ypr",
+          "pre_receiving_long",
+          "pre_rushing_yds",
+          "pre_rushing_td",
+          "rating",
+          "stars"
+        ],
+        "scoring_rows": 373,
+        "status": "scored",
+        "training_rows": 1086,
+        "training_seasons": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ]
+      }
+    },
+    "prediction_rows": 2074,
+    "scoreable_groups": [
+      "DB",
+      "DL",
+      "EDGE",
+      "LB",
+      "QB",
+      "RB",
+      "TE",
+      "WR"
+    ],
+    "scoring_rows": 2074,
+    "scoring_season": 2026,
+    "training_rows": 5557,
+    "training_seasons": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  }
+}
