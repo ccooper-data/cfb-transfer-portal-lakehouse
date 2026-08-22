@@ -5,11 +5,9 @@ include:
   - resources/*.yml
 
 variables:
-  cluster_id:
-    description: Existing Databricks cluster ID used by the portfolio job.
   catalog:
     description: Unity Catalog catalog.
-    default: main
+    default: workspace
   schema:
     description: Unity Catalog schema.
     default: cfb_transfer_portal

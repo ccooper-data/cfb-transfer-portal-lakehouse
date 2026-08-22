@@ -6,7 +6,6 @@ resources:
         enabled: true
       tasks:
         - task_key: bronze_manifest
-          existing_cluster_id: ${var.cluster_id}
           notebook_task:
             notebook_path: ../databricks/notebooks/01_bronze_manifest.py
             base_parameters:
@@ -16,7 +15,6 @@ resources:
         - task_key: silver_resolutions
           depends_on:
             - task_key: bronze_manifest
-          existing_cluster_id: ${var.cluster_id}
           notebook_task:
             notebook_path: ../databricks/notebooks/02_silver_resolutions.py
             base_parameters:
@@ -26,7 +24,6 @@ resources:
         - task_key: gold_resolver_accounting
           depends_on:
             - task_key: silver_resolutions
-          existing_cluster_id: ${var.cluster_id}
           notebook_task:
             notebook_path: ../databricks/notebooks/03_gold_resolver_accounting.py
             base_parameters:
