@@ -31,6 +31,10 @@ variables:
     description: Workspace/Volume path to the frozen first 2026 v2 predictions CSV.
   predictions_2026_v2_summary_path:
     description: Workspace/Volume path to the frozen first 2026 v2 prediction summary JSON.
+  predictions_2026_v2_presentation_path:
+    description: Workspace/Volume path to the frozen first 2026 v2 presentation CSV.
+  predictions_2026_v2_presentation_summary_path:
+    description: Workspace/Volume path to the frozen first 2026 v2 presentation summary JSON.
 
 targets:
   dev:

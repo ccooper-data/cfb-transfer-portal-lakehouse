@@ -77,3 +77,13 @@ resources:
               predictions_2026_v2_summary_path: ${var.predictions_2026_v2_summary_path}
               catalog: ${var.catalog}
               schema: ${var.schema}
+        - task_key: gold_player_predictions_2026_v2_presentation
+          depends_on:
+            - task_key: gold_player_predictions_2026_v2
+          notebook_task:
+            notebook_path: ../databricks/notebooks/09_gold_player_predictions_2026_v2_presentation.py
+            base_parameters:
+              predictions_2026_v2_presentation_path: ${var.predictions_2026_v2_presentation_path}
+              predictions_2026_v2_presentation_summary_path: ${var.predictions_2026_v2_presentation_summary_path}
+              catalog: ${var.catalog}
+              schema: ${var.schema}
