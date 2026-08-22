@@ -15,6 +15,12 @@ variables:
     description: Workspace/Volume path to exported raw_manifest.jsonl.
   resolutions_path:
     description: Workspace/Volume path to resolutions JSONL.
+  bridge_path:
+    description: Workspace/Volume path to resolved player-season bridge JSONL.
+  stats_path:
+    description: Workspace/Volume path to resolved long-form player stats JSONL.
+  feature_matrix_path:
+    description: Workspace/Volume path to full player production feature matrix JSONL.
 
 targets:
   dev:

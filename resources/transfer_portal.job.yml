@@ -29,3 +29,30 @@ resources:
             base_parameters:
               catalog: ${var.catalog}
               schema: ${var.schema}
+        - task_key: silver_player_season_bridge
+          depends_on:
+            - task_key: gold_resolver_accounting
+          notebook_task:
+            notebook_path: ../databricks/notebooks/04_silver_player_season_bridge.py
+            base_parameters:
+              bridge_path: ${var.bridge_path}
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+        - task_key: silver_player_stats_long
+          depends_on:
+            - task_key: silver_player_season_bridge
+          notebook_task:
+            notebook_path: ../databricks/notebooks/05_silver_player_stats_long.py
+            base_parameters:
+              stats_path: ${var.stats_path}
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+        - task_key: gold_player_production_feature_matrix
+          depends_on:
+            - task_key: silver_player_stats_long
+          notebook_task:
+            notebook_path: ../databricks/notebooks/06_gold_player_production_feature_matrix.py
+            base_parameters:
+              feature_matrix_path: ${var.feature_matrix_path}
+              catalog: ${var.catalog}
+              schema: ${var.schema}
