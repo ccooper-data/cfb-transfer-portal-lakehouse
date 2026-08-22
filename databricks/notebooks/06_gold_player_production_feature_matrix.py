@@ -27,10 +27,27 @@ if missing:
 
 row_count = matrix.count()
 distinct_portal_keys = matrix.select("portal_key").distinct().count()
+
+pre_post_metadata_columns = {
+    "pre_season",
+    "post_season",
+    "pre_stats_source_available",
+    "post_stats_source_available",
+    "pre_has_player_stats",
+    "pre_has_origin_stats",
+    "post_has_player_stats",
+    "post_has_destination_stats",
+    "pre_team_mismatch",
+    "post_team_mismatch",
+    "post_outcome_right_censored",
+}
 feature_columns = [
     name for name in matrix.columns
-    if name.startswith("pre_") or name.startswith("post_")
+    if (name.startswith("pre_") or name.startswith("post_"))
+    and name not in pre_post_metadata_columns
 ]
+pre_feature_columns = [name for name in feature_columns if name.startswith("pre_")]
+post_feature_columns = [name for name in feature_columns if name.startswith("post_")]
 
 if row_count != 10685:
     raise ValueError(f"Expected 10,685 feature-matrix rows for v1, found {row_count}")
@@ -41,7 +58,12 @@ if distinct_portal_keys != row_count:
     )
 if len(feature_columns) != 108:
     raise ValueError(
-        f"Expected 108 pre/post feature columns for v1, found {len(feature_columns)}"
+        f"Expected 108 raw production feature columns for v1, found {len(feature_columns)}"
+    )
+if len(pre_feature_columns) != 54 or len(post_feature_columns) != 54:
+    raise ValueError(
+        "Expected 54 pre and 54 post raw production feature columns for v1, "
+        f"found pre={len(pre_feature_columns)} post={len(post_feature_columns)}"
     )
 
 (
