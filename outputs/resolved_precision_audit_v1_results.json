@@ -1,0 +1,108 @@
+{
+  "audit": {
+    "correct": 270,
+    "incorrect": 0,
+    "row_count": 274,
+    "uncertain": 4
+  },
+  "combined_production_auto_resolutions": {
+    "n": 10685,
+    "possible_upper_bound": 1.0,
+    "strict_verified_approx_95pct_interval": [
+      0.9427874821843258,
+      0.9978814078807531
+    ],
+    "strict_verified_rate": 0.9889377632194665,
+    "verified_incorrect_matches_in_audit": 0
+  },
+  "fallback_census": {
+    "adjudicated_precision": 1.0,
+    "correct": 153,
+    "incorrect": 0,
+    "n": 154,
+    "possible_upper_bound": 1.0,
+    "strict_verified_rate": 0.9935064935064936,
+    "uncertain": 1
+  },
+  "methodology": {
+    "adjudicated": "uncertain labels are excluded from the correctness denominator",
+    "fallback_interval": "none; all production next-season fallback matches are audited",
+    "same_season_estimator": "population-weighted stratified estimator across portal seasons",
+    "sampling_interval": "approximate 95% Wilson interval using Kish effective sample size for unequal per-record stratum weights",
+    "strict_verified": "uncertain labels are treated as not verified"
+  },
+  "same_season_sample": {
+    "adjudicated_precision": 1.0,
+    "by_season": {
+      "2021": {
+        "adjudicated_precision": 1.0,
+        "correct": 18,
+        "incorrect": 0,
+        "population_n": 551,
+        "possible_upper_bound": 1.0,
+        "sample_n": 20,
+        "strict_verified_rate": 0.9,
+        "uncertain": 2
+      },
+      "2022": {
+        "adjudicated_precision": 1.0,
+        "correct": 20,
+        "incorrect": 0,
+        "population_n": 1047,
+        "possible_upper_bound": 1.0,
+        "sample_n": 20,
+        "strict_verified_rate": 1.0,
+        "uncertain": 0
+      },
+      "2023": {
+        "adjudicated_precision": 1.0,
+        "correct": 19,
+        "incorrect": 0,
+        "population_n": 1242,
+        "possible_upper_bound": 1.0,
+        "sample_n": 20,
+        "strict_verified_rate": 0.95,
+        "uncertain": 1
+      },
+      "2024": {
+        "adjudicated_precision": 1.0,
+        "correct": 20,
+        "incorrect": 0,
+        "population_n": 2017,
+        "possible_upper_bound": 1.0,
+        "sample_n": 20,
+        "strict_verified_rate": 1.0,
+        "uncertain": 0
+      },
+      "2025": {
+        "adjudicated_precision": 1.0,
+        "correct": 20,
+        "incorrect": 0,
+        "population_n": 3038,
+        "possible_upper_bound": 1.0,
+        "sample_n": 20,
+        "strict_verified_rate": 1.0,
+        "uncertain": 0
+      },
+      "2026": {
+        "adjudicated_precision": 1.0,
+        "correct": 20,
+        "incorrect": 0,
+        "population_n": 2636,
+        "possible_upper_bound": 1.0,
+        "sample_n": 20,
+        "strict_verified_rate": 1.0,
+        "uncertain": 0
+      }
+    },
+    "kish_effective_n": 95.65212790093479,
+    "population_n": 10531,
+    "possible_upper_bound": 1.0,
+    "sample_n": 120,
+    "strict_verified_approx_95pct_interval": [
+      0.9420457931003249,
+      0.9979453844084937
+    ],
+    "strict_verified_rate": 0.9888709524261703
+  }
+}
