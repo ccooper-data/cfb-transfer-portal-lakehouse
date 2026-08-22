@@ -1,25 +1,23 @@
 # CFB Transfer Portal Lakehouse
 
-A data-engineering-first platform for measuring what happens after college football players enter the transfer portal.
+A data-engineering-first college football analytics platform that resolves transfer-portal identities, links players to longitudinal production, builds point-in-time modeling features, and evaluates post-transfer production on a strict future-season holdout.
 
-The centerpiece is **entity resolution**, not model complexity. The portal endpoint does not expose a player ID, while roster and production endpoints do. This repository therefore treats the name-to-player-ID join as a measured, testable product with explicit unresolved and ambiguous states.
+The centerpiece is **measured entity resolution and reproducible analytical lineage**, not model complexity.
 
-## Research questions
+The CollegeFootballData transfer-portal endpoint does not expose a player ID, while roster and player-stat endpoints do. This repository therefore treats portal-name → CFBD-player-ID resolution as a first-class product with explicit unresolved, review, and ambiguous states before any production modeling occurs.
 
-1. **Player-level prediction:** does portal information improve prediction of post-transfer production beyond a point-in-time baseline built from returning production and prior player/team information?
-2. **Team-level association:** how much does incoming portal talent add beyond returning production when describing subsequent team performance?
+## What has been built
 
-The second question is deliberately not framed as causal. Good programs attract good transfers, and the available portal era produces only a few hundred team-seasons. See `docs/decisions/0003-no-causal-claim.md` and `0004-team-level-secondary.md`.
-
-## Architecture
+The project now runs end to end from authenticated CFBD acquisition through predictive evaluation:
 
 ```text
 CollegeFootballData API
         |
         v
-immutable raw JSON objects  data/raw/objects/<sha-prefix>/<sha>.json
+immutable raw JSON objects
+content-addressed by SHA-256
         |
-        +--> data/raw/manifest.sqlite  (request + source provenance)
+        +--> SQLite request/source manifest
         |
         v
 portal rows + historical rosters
@@ -27,25 +25,225 @@ portal rows + historical rosters
         v
 blocked-and-scored entity resolver
         |
-        +--> resolved player_id
-        +--> manual review
-        +--> ambiguous holdout
-        +--> unresolved reason
+        +--> same-season resolution
+        +--> conservative next-season fallback
+        +--> review / ambiguous / unresolved
         |
         v
-labeled evaluation + resolution-rate publication
+locked resolver precision audit
         |
         v
-Delta/Databricks feature tables and modeling (next layer)
+resolved player-season production bridge
+        |
+        v
+108-column pre/post production feature matrix
+        |
+        v
+position-aware modeling targets
+        |
+        +--> strict 2025 holdout evaluation
+        +--> returning-production baseline
+        +--> negative-control selection diagnostic
 ```
 
-The raw archive mirrors the proven manifest pattern from the GTFS project: exact source bytes are content-addressed by SHA-256 and stored once, while every API observation is retained separately in SQLite with timestamps, request parameters, source URL, headers, and object pointer. This keeps the source layer reproducible and auditable.
+Databricks currently materializes the initial Bronze/Silver/Gold resolver slice. The next productionization step is to port the completed local player bridge, feature, holdout, and negative-control layers into Delta tables and MLflow-tracked jobs.
+
+## Current evidence snapshot
+
+### Source acquisition and entity resolution
+
+Authenticated CFBD ingestion has been completed for portal seasons **2021–2026**.
+
+- **18,878** portal rows processed
+- **10,685** automatically resolved to a CFBD player ID
+- **56.60%** overall automatic resolution coverage
+- **13,927** portal rows disclosed a destination
+- **76.72%** automatic resolution coverage among destination-known rows
+- **10,531** same-season resolutions
+- **154** conservative next-season fallback resolutions
+- 2026 next-season fallback is unavailable because a 2027 roster does not yet exist
+
+The resolver never overrides review or ambiguous states merely to improve coverage.
+
+### Locked resolver precision audit
+
+Resolver v1 was frozen before the precision audit.
+
+The locked audit contains **274** records:
+
+- 120 deterministic same-season sample rows — 20 per portal season from 2021–2026
+- all 154 next-season fallback resolutions — a complete census of that strategy
+
+AI-assisted independent evidence review produced:
+
+- **270 correct**
+- **0 verified incorrect**
+- **4 uncertain**
+
+The audit should **not** be described as 100% accuracy.
+
+Strict verified results, where uncertain rows are not silently counted as correct:
+
+- next-season fallback census: **99.35%**
+- combined production-resolution precision estimate: **98.89%**
+- approximate 95% interval for the combined strict estimate: **94.28%–99.79%**
+
+The evidence review is **AI-assisted with human confirmation pending**. See `docs/decisions/0006-resolver-v1-locked-precision-audit.md`.
+
+### Player-production bridge
+
+Resolved transfer records are joined to CFBD player-season statistics by the stable `playerId`.
+
+The production bridge contains:
+
+- **10,685** resolved transfer rows
+- **132,956** linked long-form stat rows
+- **4,388** transfers with observed expected-team production in both the pre-transfer and post-transfer seasons
+- **54.52%** complete pre/post coverage among the 8,049 transfers whose outcome season is complete
+
+The bridge preserves explicit flags for team mismatches and missing production. Missing statistics are not silently converted to zero.
+
+The 2026 post-transfer outcome is explicitly right-censored because 2026 player-season statistics are not yet available.
+
+### Feature layer
+
+The analytical feature layer contains:
+
+- **10,685** one-row-per-transfer feature records
+- **108** raw CFBD production features
+- **54 pre-transfer** feature columns
+- **54 post-transfer** feature columns
+- **4,388** complete pre/post analysis rows
+
+Feature identity preserves the full:
+
+```text
+phase + category + statType
+```
+
+For example, passing yards and rushing yards remain separate metrics.
+
+### Position-aware modeling population
+
+Position-specific anchor outcomes are used instead of forcing every football position into one generic target.
+
+Examples:
+
+- QB → passing yards
+- RB → rushing yards
+- WR / TE → receiving yards
+- DB / DL / EDGE / LB → total tackles
+- K → kicking points
+- P → yards per punt
+
+The position-aware target layer retains **4,168** modeling rows from the 4,388-row complete cohort.
+
+Offensive line and long-snapper rows are explicitly excluded because the available CFBD individual statistics do not provide a defensible equivalent production target.
+
+## 2025 holdout evaluation
+
+The first predictive evaluation uses a strict time split:
+
+- train: **2021–2024**
+- holdout: **2025**
+- hyperparameter selection: expanding-year validation inside 2021–2024 only
+- no 2025 observations used for model fitting or alpha selection
+- no `post_*` production variables used as predictors
+
+Each position-specific ridge model is benchmarked against a simple **returning-production baseline**:
+
+> predict the player's post-transfer anchor production with the player's observed pre-transfer anchor production.
+
+Eight position groups met the sample-size requirement and all eight reduced 2025 holdout MAE versus that baseline.
+
+| Position | 2025 holdout rows | Baseline MAE | Model MAE | MAE improvement |
+| --- | ---: | ---: | ---: | ---: |
+| RB | 160 | 392.50 | 279.47 | **28.8%** |
+| EDGE | 54 | 13.22 | 10.09 | **23.7%** |
+| WR | 261 | 285.05 | 222.78 | **21.8%** |
+| DL | 194 | 12.30 | 10.11 | **17.8%** |
+| LB | 154 | 33.68 | 28.07 | **16.7%** |
+| DB | 388 | 20.31 | 17.89 | **11.9%** |
+| TE | 91 | 124.47 | 116.20 | **6.6%** |
+| QB | 106 | 897.18 | 868.10 | **3.2%** |
+
+The evaluated holdout contains **1,408** transfer cases.
+
+These results support a predictive claim:
+
+> the position-specific numeric profiles reduced absolute prediction error relative to simply carrying forward prior-season production.
+
+They do **not** support a causal claim that transferring caused the production change. Several groups still have weak or negative R² despite improved MAE, so the project deliberately avoids describing the models as universally “high accuracy.”
+
+Punter was skipped because only 30 training rows were available.
+
+## Negative-control / selection diagnostic
+
+A falsification test asks whether future portal-side information can predict a performance change that happened **before the transfer**.
+
+For portal season `S`, the negative-control outcome is:
+
+```text
+anchor production(S-1) - anchor production(S-2)
+```
+
+The future-side predictors are portal destination, rating, and stars. Destination encoding is learned on training rows only.
+
+Design:
+
+- train seasons: **2022–2024**
+- strict holdout: **2025**
+- **2,893** negative-control panel rows
+- **1,023** 2025 holdout predictions
+- **8** position groups evaluated
+- **3** groups triggered the diagnostic criterion: DL, RB, and TE
+
+The detected signal is modest:
+
+- DL: about **2.62%** MAE improvement versus historical mean
+- RB: about **0.93%**
+- TE: about **0.90%**
+
+This is evidence that player selection into portal destinations is associated with performance trajectories already underway before the move.
+
+That finding does **not** invalidate predictive forecasting. It does reinforce the decision to avoid interpreting post-transfer prediction as a causal estimate of school or transfer effects.
+
+## Research questions
+
+1. **Player-level prediction:** can point-in-time pre-transfer information predict post-transfer production better than returning production alone?
+2. **Selection/confounding diagnostics:** do future portal characteristics contain signal about outcomes that were already determined before the transfer?
+3. **Team-level association:** how much does incoming portal talent add beyond returning production when describing subsequent team performance?
+
+The third question remains secondary. The portal era yields only a few hundred team-seasons, and successful programs attract better transfers. Team-level results will therefore be treated as association, not causal effect.
 
 ## Source endpoints
 
-The current CFBD Python client documents `GET /player/portal`, historical rosters at `GET /roster`, returning production at `GET /player/returning`, player season stats at `GET /stats/player/season`, and team season stats at `GET /stats/season`. The official package is installable as `cfbd`.
+The project uses CollegeFootballData endpoints including:
 
-This project uses a tiny raw HTTP client for ingestion so the exact JSON response bytes can be archived before any generated-client model coercion. The official `cfbd` package is pinned in `requirements.txt` for exploration and downstream typed access.
+- `GET /player/portal`
+- `GET /roster`
+- `GET /stats/player/season`
+- `GET /player/returning`
+- `GET /stats/season`
+- `GET /records`
+
+A small raw HTTP client is used for ingestion so exact response bytes can be archived before any generated-client coercion.
+
+The official `cfbd` Python package is pinned in `requirements.txt` for exploration and downstream typed access.
+
+## Source provenance
+
+Raw API responses are immutable and content-addressed:
+
+```text
+data/raw/objects/<sha-prefix>/<sha256>.json
+```
+
+Every observation is recorded separately in the local SQLite manifest with request parameters, source information, timestamps, headers, byte count, record count, SHA-256, and object pointer.
+
+This gives the project a reproducible lineage from source response through resolution and analytical outputs.
+
+Raw authenticated source payloads and credentials are intentionally excluded from version control.
 
 ## Quick start
 
@@ -54,25 +252,12 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
 python -m pip install -r requirements.txt
+```
+
+Set the CFBD API key in your shell before authenticated ingestion:
+
+```bash
 export CFBD_API_KEY='...'
-```
-
-Archive a portal season:
-
-```bash
-make portal YEAR=2024
-```
-
-Archive a roster season:
-
-```bash
-make roster YEAR=2024
-```
-
-Or only a destination roster:
-
-```bash
-make roster YEAR=2024 TEAM='Ohio State'
 ```
 
 Run tests:
@@ -81,21 +266,43 @@ Run tests:
 make test
 ```
 
-Run the complete 2021-present source pull once `CFBD_API_KEY` is set:
+Archive a single portal or roster season:
+
+```bash
+make portal YEAR=2024
+make roster YEAR=2024
+```
+
+Run portal/roster ingestion and resolution:
 
 ```bash
 make ingest-all START=2021 END=2026
 make build-resolution START=2021 END=2026
 ```
 
-The build writes:
+Player statistics are archived separately so the identity layer does not need to be rerun:
 
-- `outputs/resolutions_2021_2026.jsonl`
-- `outputs/resolver_accounting_2021_2026.json`
-- `outputs/entity_resolution_audit_2021_2026.csv`
-- `outputs/raw_manifest.jsonl`
+```bash
+for YEAR in 2020 2021 2022 2023 2024 2025 2026
+do
+  PYTHONPATH=src python3 -m cfb_portal.ingest player_stats --season "$YEAR"
+done
+```
 
-The audit CSV is deliberately stratified across resolver statuses/reasons so the human review set does not consist only of easy exact-name matches.
+## Reproducible analytical layers
+
+Key local scripts include:
+
+```text
+scripts/evaluate_precision_audit.py
+scripts/build_player_season_bridge.py
+scripts/build_player_feature_matrix.py
+scripts/build_position_modeling_table.py
+scripts/evaluate_holdout_2025.py
+scripts/evaluate_negative_control.py
+```
+
+Generated analytical CSV/JSON/JSONL files are intentionally treated as reproducible outputs rather than source code, except for selected locked audit artifacts that are committed as part of the governance record.
 
 ## Entity-resolution contract
 
@@ -103,106 +310,82 @@ The resolver **never silently fuzzy-joins** a portal row to a player ID.
 
 ### Blocking
 
-Candidates must be on the disclosed destination roster in the portal season. Position group is used as a primary block when available, with a destination-team fallback because positions can be dirty or missing.
+Candidates are drawn from the disclosed destination roster. Position group is used as a primary block when available, with same-team fallback because roster positions can be dirty, broad, or missing.
 
 ### Scoring
 
-- last name similarity: 55%
-- first name similarity / common alias equivalence: 30%
+- last-name similarity: 55%
+- first-name similarity / supported alias equivalence: 30%
 - position-group agreement: 15%
-
-Common first-name variants such as `Mike` / `Michael` are treated as supporting equivalence, not as proof of identity.
 
 ### Decisions
 
-- `resolved`: high score **and** clear margin over runner-up
-- `review`: plausible match but requires human label
-- `ambiguous`: same-name collision or insufficient score margin
-- `unresolved`: no destination, no roster candidate, or low score
+- `resolved` — high score and sufficient margin
+- `review` — plausible match requiring review
+- `ambiguous` — same-name collision or insufficient score margin
+- `unresolved` — no destination, no roster candidate, or low score
 
-An exact same-name collision is deliberately held out rather than forced.
-
-## The metric that matters first
-
-Before publishing model accuracy, publish the resolver accounting table:
-
-```text
-portal entries                         N
-resolved automatically                 n / N
-manual-review candidates               n / N
-ambiguous same-name collisions         n / N
-no subsequent destination roster row   n / N
-low-score unresolved                   n / N
-manual-audit misses                    n / audited_n
-```
-
-The target write-up should read like:
-
-> “8,431 of 8,947 portal entries (94.2%) resolved; of the 5.8% unresolved, 3.1% never appeared on a subsequent roster, 1.9% were ambiguous same-name collisions held out, and 0.8% were missed on manual audit.”
-
-Those numbers are **illustrative until the labeled evaluation is run**. The repository is structured so the final paragraph is computed, not hand-written.
-
-## Labeled evaluation set
-
-`data/labels/entity_resolution_labels.csv` is the human-reviewed gold set. Do not tune only on easy exact-name matches. Include:
-
-- nicknames / formal first names
-- suffixes
-- punctuation / diacritics
-- same-name collisions at one destination
-- position changes
-- portal withdrawals
-- destination changes
-- players missing from the subsequent roster
-
-Split labels into development and locked audit subsets before threshold tuning.
+A conservative next-season roster is only attempted for eligible same-season unresolved rows. It never overrides review or ambiguous states.
 
 ## Point-in-time discipline
 
-Player-level models must use only information known before the target season outcome. Returning production is the baseline the portal signal has to beat. The planned negative control predicts **prior-season change** from future portal features; if that “works,” the design is contaminated by confounding or leakage.
+The analytical design enforces temporal separation.
 
-## Databricks plan
+- post-transfer production is never used as a predictor
+- 2025 holdout observations are not used to fit 2021–2024 models
+- 2025 is not used for hyperparameter selection
+- destination encodings in the negative control are learned from training rows only
+- missing anchor outcomes are excluded rather than converted to zero
+- 2026 post-transfer outcomes are marked right-censored
 
-The repository now includes a **Declarative Automation Bundle** and a three-task Lakeflow Job for the first medallion slice:
+Returning production is the benchmark the predictive model has to beat.
 
-- **Bronze:** `bronze_source_manifest` — immutable request/source provenance exported from the local SQLite manifest.
-- **Silver:** `silver_transfer_resolution` — stable portal entry key, entity-resolution decision, player ID when resolved, scores, reasons, and candidate evidence.
-- **Gold:** `gold_resolver_accounting` — season/status/reason counts and shares that drive the published resolver-quality statement.
+## Databricks
 
-The next Databricks increments add raw portal/roster/player-stat tables, the resolved player-season bridge, point-in-time player production features, returning-production baseline, negative-control panel, and then modeling/MLflow. See `databricks/README.md`.
+The repository includes a Declarative Automation Bundle and the first three-task Lakeflow medallion slice:
 
-Streamlit is intentionally last. The primary deliverables are the platform, resolver evaluation, ADRs, reproducible jobs, Delta tables, and written analysis.
+- **Bronze** — `bronze_source_manifest`
+- **Silver** — `silver_transfer_resolution`
+- **Gold** — `gold_resolver_accounting`
 
-## Decisions
+The local Python pipeline now goes beyond that initial Databricks slice. The next Databricks increment will materialize the resolved player-season bridge, feature matrix, modeling populations, holdout evaluation outputs, and negative-control diagnostics as governed Delta tables, then add MLflow experiment tracking.
+
+Streamlit remains intentionally last.
+
+## Architectural decisions
 
 See `docs/decisions/`:
 
-1. immutable raw source archive and manifest
-2. measured entity resolution with explicit holdouts
+1. immutable raw source archive and provenance manifest
+2. entity resolution is a measured product
 3. no causal claim from observational portal data
 4. team-level analysis is secondary and underpowered
-5. Streamlit is the final presentation layer, not the platform
+5. Streamlit is the final presentation layer
+6. resolver v1 is frozen before its locked precision audit
+
+## Tests
+
+The current local suite contains **41 passing tests** covering source provenance, deterministic identity keys, resolver safeguards, next-season fallback behavior, locked-audit evaluation, player-stat bridging, feature construction, position targets, strict holdout separation, and the negative-control design.
 
 ## Current status
 
-**Phase 1 foundation is implemented:**
+The project has completed the main local analytical proof:
 
-- immutable content-addressed raw archive
-- SQLite source/request manifest
-- portal/roster ingestion commands
-- blocked-and-scored player-ID resolver
-- explicit ambiguous/unresolved reason codes
-- label-file contract and evaluation helper
-- unit tests and GitHub Actions CI
-- five ADRs
+- authenticated portal and roster ingestion
+- immutable source provenance
+- audited resolver v1
+- exact-ID player-production bridge
+- point-in-time feature layer
+- position-aware targets
+- strict 2025 predictive holdout
+- returning-production benchmark
+- negative-control selection diagnostic
 
-The local Phase 1 workflow is now end-to-end and waiting only on a CFBD API key for the first real source pull. It can ingest every portal/roster season from 2021-present, resolve the archived data, publish complete resolver accounting, generate a deterministic stratified human-audit template, and export the raw manifest for Databricks. A Declarative Automation Bundle then materializes Bronze provenance, Silver entity-resolution decisions, and Gold resolver-accounting Delta tables.
-
-The next evidence milestone is the **real 2021-present run and labeled audit**. No resolution percentage will be published until that run is completed and the held-out labels are reviewed.
+The next engineering milestone is **Databricks productionization of the completed player-level analytical layers**, followed by MLflow tracking and, only after those platform layers are stable, the final Streamlit presentation layer.
 
 ## Source references
 
 - CollegeFootballData API: https://api.collegefootballdata.com
-- Getting started / API key: https://api.collegefootballdata.com/getting-started
-- Official Python client: https://github.com/CFBD/cfbd-python
-- Transfer portal reference (cfbfastR): https://cfbfastr.sportsdataverse.org/reference/cfbd_recruiting_transfer_portal.html
+- CollegeFootballData getting started: https://api.collegefootballdata.com/getting-started
+- Official CFBD Python client: https://github.com/CFBD/cfbd-python
+- cfbfastR transfer-portal reference: https://cfbfastr.sportsdataverse.org/reference/cfbd_recruiting_transfer_portal.html
