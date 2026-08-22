@@ -1,1 +1,4 @@
 cfbd==5.21.0
+pandas>=2.2,<3
+plotly>=5.24,<7
+streamlit>=1.40,<2

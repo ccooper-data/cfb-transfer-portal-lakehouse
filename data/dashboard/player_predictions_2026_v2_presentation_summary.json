@@ -1,0 +1,26 @@
+{
+  "2026_outcome_used": false,
+  "causal_claim": false,
+  "governance": {
+    "2026_outcomes_observed": false,
+    "point_forecasts_changed": false,
+    "support_is_accuracy": false,
+    "support_is_confidence": false,
+    "support_is_prediction_interval": false
+  },
+  "prediction_modified": false,
+  "presentation_out": "outputs/player_predictions_2026_v2_presentation.csv",
+  "rows": 2074,
+  "semantics": "data-completeness/model-input-support label; not calibrated confidence",
+  "source_predictions": "outputs/player_predictions_2026_v2.csv",
+  "support_contract": {
+    "LIMITED": "prior production unavailable",
+    "STANDARD": "prior production observed and model_feature_missing_count > 2",
+    "STRONG": "prior production observed and model_feature_missing_count <= 2"
+  },
+  "support_counts": {
+    "LIMITED": 469,
+    "STANDARD": 84,
+    "STRONG": 1521
+  }
+}
