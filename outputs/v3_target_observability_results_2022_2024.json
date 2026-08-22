@@ -1,0 +1,2995 @@
+{
+  "cohort_summary": {
+    "accounting": {
+      "any_stat_no_target": 108,
+      "any_stat_observed": 5665,
+      "bridge_rows": 10685,
+      "cohort_rows": 6478,
+      "excluded_not_same_season_roster_link": 154,
+      "excluded_outside_2021_2025": 2636,
+      "excluded_unsupported_position": 1417,
+      "no_any_stat": 813,
+      "target_missing": 921,
+      "target_observed": 5557
+    },
+    "by_position_group": {
+      "DB": {
+        "any_stat_no_target": 31,
+        "any_stat_observed": 1510,
+        "no_any_stat": 213,
+        "rows": 1723,
+        "target_missing": 244,
+        "target_observed": 1479
+      },
+      "DL": {
+        "any_stat_no_target": 4,
+        "any_stat_observed": 715,
+        "no_any_stat": 99,
+        "rows": 814,
+        "target_missing": 103,
+        "target_observed": 711
+      },
+      "EDGE": {
+        "any_stat_no_target": 3,
+        "any_stat_observed": 183,
+        "no_any_stat": 22,
+        "rows": 205,
+        "target_missing": 25,
+        "target_observed": 180
+      },
+      "LB": {
+        "any_stat_no_target": 4,
+        "any_stat_observed": 649,
+        "no_any_stat": 75,
+        "rows": 724,
+        "target_missing": 79,
+        "target_observed": 645
+      },
+      "QB": {
+        "any_stat_no_target": 18,
+        "any_stat_observed": 542,
+        "no_any_stat": 102,
+        "rows": 644,
+        "target_missing": 120,
+        "target_observed": 524
+      },
+      "RB": {
+        "any_stat_no_target": 4,
+        "any_stat_observed": 579,
+        "no_any_stat": 34,
+        "rows": 613,
+        "target_missing": 38,
+        "target_observed": 575
+      },
+      "TE": {
+        "any_stat_no_target": 7,
+        "any_stat_observed": 364,
+        "no_any_stat": 97,
+        "rows": 461,
+        "target_missing": 104,
+        "target_observed": 357
+      },
+      "WR": {
+        "any_stat_no_target": 37,
+        "any_stat_observed": 1123,
+        "no_any_stat": 171,
+        "rows": 1294,
+        "target_missing": 208,
+        "target_observed": 1086
+      }
+    },
+    "by_season": {
+      "2021": {
+        "any_stat_no_target": 6,
+        "any_stat_observed": 463,
+        "no_any_stat": 42,
+        "rows": 505,
+        "target_missing": 48,
+        "target_observed": 457
+      },
+      "2022": {
+        "any_stat_no_target": 15,
+        "any_stat_observed": 754,
+        "no_any_stat": 111,
+        "rows": 865,
+        "target_missing": 126,
+        "target_observed": 739
+      },
+      "2023": {
+        "any_stat_no_target": 14,
+        "any_stat_observed": 883,
+        "no_any_stat": 120,
+        "rows": 1003,
+        "target_missing": 134,
+        "target_observed": 869
+      },
+      "2024": {
+        "any_stat_no_target": 29,
+        "any_stat_observed": 1528,
+        "no_any_stat": 146,
+        "rows": 1674,
+        "target_missing": 175,
+        "target_observed": 1499
+      },
+      "2025": {
+        "any_stat_no_target": 44,
+        "any_stat_observed": 2037,
+        "no_any_stat": 394,
+        "rows": 2431,
+        "target_missing": 438,
+        "target_observed": 1993
+      }
+    },
+    "population_contract": {
+      "interpretation": "CFBD target observability, not participation",
+      "missing_target_converted_to_zero": false,
+      "post_stats_source_available_required": true,
+      "post_transfer_predictors_retained": false,
+      "same_season_destination_roster_link_required": true,
+      "scoreable_position_groups": [
+        "DB",
+        "DL",
+        "EDGE",
+        "LB",
+        "QB",
+        "RB",
+        "TE",
+        "WR"
+      ],
+      "seasons": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    }
+  },
+  "evaluated_group_folds": 19,
+  "evaluation_design": {
+    "baseline": "position-group target-observed prevalence estimated from the outer fold training period",
+    "excluded_from_primary_evidence": [
+      2025
+    ],
+    "hyperparameter_selection": "expanding-year training-only validation using Brier score; default L2=1.0 when no inner validation fold is available",
+    "interpretation": "target observability, not participation",
+    "missing_target_converted_to_zero": false,
+    "model": "L2-regularized logistic regression",
+    "post_transfer_predictors": "prohibited",
+    "preprocessing": "training-fold median imputation, training-fold scaling, explicit missingness channel",
+    "primary_backtest_years": [
+      2022,
+      2023,
+      2024
+    ],
+    "primary_metric": "Brier score",
+    "training_rule": "for holdout year Y, train only on seasons < Y"
+  },
+  "fold_results": [
+    {
+      "brier_skill_vs_training_prevalence": 0.020590951440059513,
+      "chosen_l2": 1.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": null,
+        "0.1": null,
+        "1.0": null,
+        "10.0": null,
+        "100.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "pre_interceptions_yds",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 26,
+      "holdout_positive": 178,
+      "holdout_rows": 204,
+      "holdout_target_observed_prevalence": 0.8725490196078431,
+      "holdout_year": 2022,
+      "logistic_v3": {
+        "brier": 0.11147101499317293,
+        "calibration_intercept": -33972617.06650519,
+        "calibration_slope": 21784736.102459818,
+        "log_loss": 0.4139187020286218,
+        "pr_auc": 0.9384940553172652,
+        "roc_auc": 0.6876620570440796
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 9,
+      "model_position_group": "DB",
+      "prevalence_baseline": {
+        "brier": 0.11381456517792303,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.3971298588101683,
+        "pr_auc": 0.8725490196078431,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 2,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6758417035396027,
+          "observed_rate": 1.0,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 1,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7841744897249704,
+          "observed_rate": 1.0,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 55,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8653350144982543,
+          "observed_rate": 0.7454545454545455,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 146,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9637607887221553,
+          "observed_rate": 0.9178082191780822,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 11,
+      "train_positive": 133,
+      "train_rows": 144,
+      "training_target_observed_prevalence": 0.9236111111111112
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.02992648038794965,
+      "chosen_l2": 1.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": null,
+        "0.1": null,
+        "1.0": null,
+        "10.0": null,
+        "100.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 15,
+      "holdout_positive": 84,
+      "holdout_rows": 99,
+      "holdout_target_observed_prevalence": 0.8484848484848485,
+      "holdout_year": 2022,
+      "logistic_v3": {
+        "brier": 0.1288485393171881,
+        "calibration_intercept": 22067460.409549057,
+        "calibration_slope": 66402404.16451881,
+        "log_loss": 0.47854515473675685,
+        "pr_auc": 0.9313346621784249,
+        "roc_auc": 0.6853174603174603
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 8,
+      "model_position_group": "DL",
+      "prevalence_baseline": {
+        "brier": 0.13282347854286025,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.4478562486788462,
+        "pr_auc": 0.8484848484848485,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 1,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5177483068027293,
+          "observed_rate": 0.0,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 20,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.752329402259192,
+          "observed_rate": 0.75,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 2,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8900269910038958,
+          "observed_rate": 0.5,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 76,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9837551749414118,
+          "observed_rate": 0.8947368421052632,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 5,
+      "train_positive": 53,
+      "train_rows": 58,
+      "training_target_observed_prevalence": 0.9137931034482759
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 2,
+      "holdout_positive": 16,
+      "holdout_rows": 18,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_position_group": "EDGE",
+      "status": "skipped_low_sample",
+      "train_negative": 1,
+      "train_positive": 4,
+      "train_rows": 5
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 15,
+      "holdout_positive": 102,
+      "holdout_rows": 117,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_position_group": "LB",
+      "status": "skipped_low_train_class_count",
+      "train_negative": 4,
+      "train_positive": 57,
+      "train_rows": 61
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.1300612097147933,
+      "chosen_l2": 1.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": null,
+        "0.1": null,
+        "1.0": null,
+        "10.0": null,
+        "100.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_passing_att",
+        "pre_passing_completions",
+        "pre_passing_td",
+        "pre_passing_int",
+        "pre_passing_pct",
+        "pre_passing_ypa",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 22,
+      "holdout_positive": 94,
+      "holdout_rows": 116,
+      "holdout_target_observed_prevalence": 0.8103448275862069,
+      "holdout_year": 2022,
+      "logistic_v3": {
+        "brier": 0.13375091973749476,
+        "calibration_intercept": 0.43226378609579097,
+        "calibration_slope": 0.5065601856349043,
+        "log_loss": 0.4452107831111489,
+        "pr_auc": 0.9350992805433861,
+        "roc_auc": 0.7763539651837524
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 8,
+      "model_position_group": "QB",
+      "prevalence_baseline": {
+        "brier": 0.15374750641208323,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.48592675347144454,
+        "pr_auc": 0.8103448275862069,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 2,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": 0.13749760513443277,
+          "observed_rate": 0.5,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 4,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": 0.2758194345419929,
+          "observed_rate": 0.5,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 5,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": 0.45832428295752337,
+          "observed_rate": 0.2,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 12,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5760099117356632,
+          "observed_rate": 0.6666666666666666,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 4,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.637251749847408,
+          "observed_rate": 0.75,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 8,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7752503846119723,
+          "observed_rate": 0.75,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 18,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8397864122555566,
+          "observed_rate": 0.8333333333333334,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 63,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9702063138438457,
+          "observed_rate": 0.9206349206349206,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 8,
+      "train_positive": 36,
+      "train_rows": 44,
+      "training_target_observed_prevalence": 0.8181818181818182
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_rushing_car",
+        "pre_rushing_td",
+        "pre_rushing_ypc",
+        "pre_receiving_rec",
+        "pre_receiving_yds",
+        "pre_receiving_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 9,
+      "holdout_positive": 79,
+      "holdout_rows": 88,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_position_group": "RB",
+      "status": "skipped_low_train_class_count",
+      "train_negative": 1,
+      "train_positive": 55,
+      "train_rows": 56
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 9,
+      "holdout_positive": 35,
+      "holdout_rows": 44,
+      "holdout_year": 2022,
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_position_group": "TE",
+      "status": "skipped_low_sample",
+      "train_negative": 4,
+      "train_positive": 15,
+      "train_rows": 19
+    },
+    {
+      "brier_skill_vs_training_prevalence": -0.07739787960989664,
+      "chosen_l2": 1.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": null,
+        "0.1": null,
+        "1.0": null,
+        "10.0": null,
+        "100.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 28,
+      "holdout_positive": 151,
+      "holdout_rows": 179,
+      "holdout_target_observed_prevalence": 0.8435754189944135,
+      "holdout_year": 2022,
+      "logistic_v3": {
+        "brier": 0.1437068831313453,
+        "calibration_intercept": 0.8729130169151512,
+        "calibration_slope": 0.3057466207272581,
+        "log_loss": 0.4953636969434857,
+        "pr_auc": 0.9034298591793157,
+        "roc_auc": 0.6512535477767266
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": false,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "WR",
+      "prevalence_baseline": {
+        "brier": 0.13338329864114692,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.4399771887138518,
+        "pr_auc": 0.8435754189944135,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 1,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": 0.07196484621917372,
+          "observed_rate": 1.0,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 1,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": 0.2787711996336827,
+          "observed_rate": 0.0,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 4,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": 0.3240807684901263,
+          "observed_rate": 1.0,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 2,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": 0.4614087424990031,
+          "observed_rate": 1.0,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 1,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5772302146240831,
+          "observed_rate": 0.0,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 4,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6269682302715627,
+          "observed_rate": 1.0,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 14,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7712615488253424,
+          "observed_rate": 0.7857142857142857,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 36,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8409911614644563,
+          "observed_rate": 0.6388888888888888,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 116,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9704138099167288,
+          "observed_rate": 0.9137931034482759,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 14,
+      "train_positive": 104,
+      "train_rows": 118,
+      "training_target_observed_prevalence": 0.8813559322033898
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.02484249572287056,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.12492136916212344,
+        "0.1": 0.11858119791935699,
+        "1.0": 0.11147101499317293,
+        "10.0": 0.11089025509770042,
+        "100.0": 0.11262764527426303
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "pre_interceptions_yds",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 39,
+      "holdout_positive": 214,
+      "holdout_rows": 253,
+      "holdout_target_observed_prevalence": 0.8458498023715415,
+      "holdout_year": 2023,
+      "logistic_v3": {
+        "brier": 0.12937947638231548,
+        "calibration_intercept": -0.3911677376622726,
+        "calibration_slope": 0.8660805227556636,
+        "log_loss": 0.4281534558068671,
+        "pr_auc": 0.9203664542042308,
+        "roc_auc": 0.679247543733525
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "DB",
+      "prevalence_baseline": {
+        "brier": 0.13267546608096162,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.4405760694998464,
+        "pr_auc": 0.8458498023715415,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 6,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7773279769790994,
+          "observed_rate": 0.6666666666666666,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 86,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8571725446883177,
+          "observed_rate": 0.7674418604651163,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 161,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9484242211665126,
+          "observed_rate": 0.8944099378881988,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 37,
+      "train_positive": 311,
+      "train_rows": 348,
+      "training_target_observed_prevalence": 0.8936781609195402
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.08043632510421483,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.15040244467949332,
+        "0.1": 0.13953801772750157,
+        "1.0": 0.1288485393171881,
+        "10.0": 0.1275886612673864,
+        "100.0": 0.13129395122519327
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 13,
+      "holdout_positive": 109,
+      "holdout_rows": 122,
+      "holdout_target_observed_prevalence": 0.8934426229508197,
+      "holdout_year": 2023,
+      "logistic_v3": {
+        "brier": 0.08794416366739952,
+        "calibration_intercept": 0.10126671824183751,
+        "calibration_slope": 0.9852643422124008,
+        "log_loss": 0.30508786186941445,
+        "pr_auc": 0.9536412316187795,
+        "roc_auc": 0.7311220889202541
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "DL",
+      "prevalence_baseline": {
+        "brier": 0.09563683958847798,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.3413077686969351,
+        "pr_auc": 0.8934426229508197,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 3,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5652537504439118,
+          "observed_rate": 0.6666666666666666,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 24,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.761782889960307,
+          "observed_rate": 0.75,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 25,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8833689937382602,
+          "observed_rate": 0.92,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 70,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9444432010012258,
+          "observed_rate": 0.9428571428571428,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 20,
+      "train_positive": 137,
+      "train_rows": 157,
+      "training_target_observed_prevalence": 0.8726114649681529
+    },
+    {
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 3,
+      "holdout_positive": 21,
+      "holdout_rows": 24,
+      "holdout_year": 2023,
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_position_group": "EDGE",
+      "status": "skipped_low_sample",
+      "train_negative": 3,
+      "train_positive": 20,
+      "train_rows": 23
+    },
+    {
+      "brier_skill_vs_training_prevalence": -0.3163938898247094,
+      "chosen_l2": 0.01,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.11177490742509243,
+        "0.1": 0.11212519152357993,
+        "1.0": 0.11330974481972533,
+        "10.0": 0.11435935140072653,
+        "100.0": 0.11540667173267707
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 12,
+      "holdout_positive": 104,
+      "holdout_rows": 116,
+      "holdout_target_observed_prevalence": 0.896551724137931,
+      "holdout_year": 2023,
+      "logistic_v3": {
+        "brier": 0.12210550613588295,
+        "calibration_intercept": 1.7702624024830935,
+        "calibration_slope": 0.13921426465375078,
+        "log_loss": 0.43850365522190116,
+        "pr_auc": 0.9393536095822911,
+        "roc_auc": 0.609375
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": false,
+      "model_converged": true,
+      "model_iterations": 8,
+      "model_position_group": "LB",
+      "prevalence_baseline": {
+        "brier": 0.09275757588949496,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.33265161252569403,
+        "pr_auc": 0.896551724137931,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 1,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": 0.011479282061820242,
+          "observed_rate": 1.0,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 1,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": 0.1217117824116052,
+          "observed_rate": 1.0,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 3,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": 0.27028267786676113,
+          "observed_rate": 1.0,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 4,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.653239750241826,
+          "observed_rate": 0.75,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 9,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7602179485196374,
+          "observed_rate": 0.7777777777777778,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 18,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8373774084809777,
+          "observed_rate": 0.8888888888888888,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 80,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9715355684943476,
+          "observed_rate": 0.9125,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 19,
+      "train_positive": 159,
+      "train_rows": 178,
+      "training_target_observed_prevalence": 0.8932584269662921
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.022450060325764465,
+      "chosen_l2": 1.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.157651769453547,
+        "0.1": 0.14020455333202683,
+        "1.0": 0.13375091973749476,
+        "10.0": 0.1339277125964248,
+        "100.0": 0.145798827721733
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_passing_att",
+        "pre_passing_completions",
+        "pre_passing_td",
+        "pre_passing_int",
+        "pre_passing_pct",
+        "pre_passing_ypa",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 11,
+      "holdout_positive": 91,
+      "holdout_rows": 102,
+      "holdout_target_observed_prevalence": 0.8921568627450981,
+      "holdout_year": 2023,
+      "logistic_v3": {
+        "brier": 0.10025577276530341,
+        "calibration_intercept": 1.1778227794981044,
+        "calibration_slope": 0.5562379029327971,
+        "log_loss": 0.348561498868785,
+        "pr_auc": 0.9495795142540845,
+        "roc_auc": 0.7202797202797203
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 8,
+      "model_position_group": "QB",
+      "prevalence_baseline": {
+        "brier": 0.10255821078431372,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.3657737545500847,
+        "pr_auc": 0.8921568627450981,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 2,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": 0.2995195819632651,
+          "observed_rate": 0.5,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 3,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": 0.35800821942855215,
+          "observed_rate": 0.3333333333333333,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 1,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": 0.49497803474308183,
+          "observed_rate": 1.0,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 17,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5837189781503307,
+          "observed_rate": 0.8235294117647058,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 2,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6799029245704838,
+          "observed_rate": 1.0,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 8,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7645618448542376,
+          "observed_rate": 0.875,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 23,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8467700158289592,
+          "observed_rate": 0.9130434782608695,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 46,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9661885145014497,
+          "observed_rate": 0.9565217391304348,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 30,
+      "train_positive": 130,
+      "train_rows": 160,
+      "training_target_observed_prevalence": 0.8125
+    },
+    {
+      "brier_skill_vs_training_prevalence": -0.04750518059911912,
+      "chosen_l2": 1.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": null,
+        "0.1": null,
+        "1.0": null,
+        "10.0": null,
+        "100.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_rushing_car",
+        "pre_rushing_td",
+        "pre_rushing_ypc",
+        "pre_receiving_rec",
+        "pre_receiving_yds",
+        "pre_receiving_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 7,
+      "holdout_positive": 90,
+      "holdout_rows": 97,
+      "holdout_target_observed_prevalence": 0.9278350515463918,
+      "holdout_year": 2023,
+      "logistic_v3": {
+        "brier": 0.07014573379294367,
+        "calibration_intercept": 1.975504379008583,
+        "calibration_slope": 0.1718186144787285,
+        "log_loss": 0.2887555546809598,
+        "pr_auc": 0.9489733477193657,
+        "roc_auc": 0.5476190476190477
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": false,
+      "model_converged": true,
+      "model_iterations": 8,
+      "model_position_group": "RB",
+      "prevalence_baseline": {
+        "brier": 0.06696456981036018,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.2592599217766156,
+        "pr_auc": 0.9278350515463918,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 4,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7723272147794595,
+          "observed_rate": 1.0,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 12,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.86987600748041,
+          "observed_rate": 0.8333333333333334,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 81,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9651262752577906,
+          "observed_rate": 0.9382716049382716,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 10,
+      "train_positive": 134,
+      "train_rows": 144,
+      "training_target_observed_prevalence": 0.9305555555555556
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.03166468463326655,
+      "chosen_l2": 1.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": null,
+        "0.1": null,
+        "1.0": null,
+        "10.0": null,
+        "100.0": null
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 19,
+      "holdout_positive": 55,
+      "holdout_rows": 74,
+      "holdout_target_observed_prevalence": 0.7432432432432432,
+      "holdout_year": 2023,
+      "logistic_v3": {
+        "brier": 0.18725053024539376,
+        "calibration_intercept": 0.4235346731473678,
+        "calibration_slope": 0.3427364944143496,
+        "log_loss": 0.6260495652992879,
+        "pr_auc": 0.8001781563359962,
+        "roc_auc": 0.6267942583732058
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "TE",
+      "prevalence_baseline": {
+        "brier": 0.19337364575459812,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.5769819819277864,
+        "pr_auc": 0.7432432432432432,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 16,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5655808529538304,
+          "observed_rate": 0.5625,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 3,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6550103419437817,
+          "observed_rate": 1.0,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 9,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7530400033758313,
+          "observed_rate": 0.4444444444444444,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 13,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.864956216120472,
+          "observed_rate": 0.9230769230769231,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 33,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9557626132133653,
+          "observed_rate": 0.8181818181818182,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 13,
+      "train_positive": 50,
+      "train_rows": 63,
+      "training_target_observed_prevalence": 0.7936507936507936
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.04849933556399755,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.16579825162758294,
+        "0.1": 0.16056018669176006,
+        "1.0": 0.1437068831313453,
+        "10.0": 0.13068024551820562,
+        "100.0": 0.13173529319159605
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 30,
+      "holdout_positive": 185,
+      "holdout_rows": 215,
+      "holdout_target_observed_prevalence": 0.8604651162790697,
+      "holdout_year": 2023,
+      "logistic_v3": {
+        "brier": 0.11424519240274628,
+        "calibration_intercept": -0.09343847641935335,
+        "calibration_slope": 0.9187822747525614,
+        "log_loss": 0.3811012301013842,
+        "pr_auc": 0.9290868304924844,
+        "roc_auc": 0.6947747747747748
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "WR",
+      "prevalence_baseline": {
+        "brier": 0.1200684315553942,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.40413286251056063,
+        "pr_auc": 0.8604651162790697,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 1,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": 0.4357437714932335,
+          "observed_rate": 1.0,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 3,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.697886816028454,
+          "observed_rate": 0.6666666666666666,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 38,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.748170196359142,
+          "observed_rate": 0.6842105263157895,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 19,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8707738625498003,
+          "observed_rate": 0.8421052631578947,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 154,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9286268634764171,
+          "observed_rate": 0.9090909090909091,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 42,
+      "train_positive": 255,
+      "train_rows": 297,
+      "training_target_observed_prevalence": 0.8585858585858586
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.05253794937777889,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.12995749696759412,
+        "0.1": 0.1268193249907101,
+        "1.0": 0.12274226624631827,
+        "10.0": 0.12112608219837352,
+        "100.0": 0.12200494104193783
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "pre_interceptions_yds",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 49,
+      "holdout_positive": 405,
+      "holdout_rows": 454,
+      "holdout_target_observed_prevalence": 0.8920704845814978,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.09154753745854663,
+        "calibration_intercept": 0.3429669465142012,
+        "calibration_slope": 0.8595324936775623,
+        "log_loss": 0.32073931168218933,
+        "pr_auc": 0.9460487311419994,
+        "roc_auc": 0.7050894431846813
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "DB",
+      "prevalence_baseline": {
+        "brier": 0.09662396229846373,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.3437882604743313,
+        "pr_auc": 0.8920704845814978,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 1,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5812130799763908,
+          "observed_rate": 1.0,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 1,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6981790759786304,
+          "observed_rate": 1.0,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 100,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7717189370610764,
+          "observed_rate": 0.77,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 152,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8728048281632331,
+          "observed_rate": 0.8947368421052632,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 200,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9504363471117562,
+          "observed_rate": 0.95,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 76,
+      "train_positive": 525,
+      "train_rows": 601,
+      "training_target_observed_prevalence": 0.8735440931780366
+    },
+    {
+      "brier_skill_vs_training_prevalence": -0.037250660544970504,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.11579957278510349,
+        "0.1": 0.11078288208542787,
+        "1.0": 0.10572071693331543,
+        "10.0": 0.10570346349725789,
+        "100.0": 0.10960726478735286
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 12,
+      "holdout_positive": 194,
+      "holdout_rows": 206,
+      "holdout_target_observed_prevalence": 0.941747572815534,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.06064010054683083,
+        "calibration_intercept": 2.0057410350621394,
+        "calibration_slope": 0.3470966942815737,
+        "log_loss": 0.24358991836493113,
+        "pr_auc": 0.9570095007661271,
+        "roc_auc": 0.6048109965635738
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": false,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "DL",
+      "prevalence_baseline": {
+        "brier": 0.058462339773271955,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.24289911818798626,
+        "pr_auc": 0.941747572815534,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 2,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5221385413486925,
+          "observed_rate": 1.0,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 1,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6973954104298823,
+          "observed_rate": 1.0,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 15,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7749858373270714,
+          "observed_rate": 0.8666666666666667,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 82,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8525909881937627,
+          "observed_rate": 0.9390243902439024,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 106,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9441747393138086,
+          "observed_rate": 0.9528301886792453,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 33,
+      "train_positive": 246,
+      "train_rows": 279,
+      "training_target_observed_prevalence": 0.8817204301075269
+    },
+    {
+      "brier_skill_vs_training_prevalence": -0.19737839974211546,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.2041956975174246,
+        "0.1": 0.16595387321795216,
+        "1.0": 0.10875485569447561,
+        "10.0": 0.10173996572007106,
+        "100.0": 0.10749652602137943
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 2,
+      "holdout_positive": 61,
+      "holdout_rows": 63,
+      "holdout_target_observed_prevalence": 0.9682539682539683,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.047820454172085886,
+        "calibration_intercept": 5.005794865421103,
+        "calibration_slope": -0.722503521902721,
+        "log_loss": 0.22217546417332765,
+        "pr_auc": 0.9513372873884394,
+        "roc_auc": 0.19672131147540983
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": false,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "EDGE",
+      "prevalence_baseline": {
+        "brier": 0.039937628891906836,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.1975854587351556,
+        "pr_auc": 0.9682539682539683,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 12,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7871217650280742,
+          "observed_rate": 1.0,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 31,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.851626686345913,
+          "observed_rate": 1.0,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 20,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9378711208783997,
+          "observed_rate": 0.9,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 6,
+      "train_positive": 41,
+      "train_rows": 47,
+      "training_target_observed_prevalence": 0.8723404255319149
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.01369772700570937,
+      "chosen_l2": 100.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.11691803811372634,
+        "0.1": 0.11517980223387281,
+        "1.0": 0.10922558383222565,
+        "10.0": 0.10372571898275114,
+        "100.0": 0.10363955456931283
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 16,
+      "holdout_positive": 165,
+      "holdout_rows": 181,
+      "holdout_target_observed_prevalence": 0.9116022099447514,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.07976634011005321,
+        "calibration_intercept": -1.5508758528697362,
+        "calibration_slope": 1.8235057792908294,
+        "log_loss": 0.29407459022748655,
+        "pr_auc": 0.9418012480306163,
+        "roc_auc": 0.6178030303030303
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "LB",
+      "prevalence_baseline": {
+        "brier": 0.08087413189051319,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.3004349574983861,
+        "pr_auc": 0.9116022099447514,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 117,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8819547736739024,
+          "observed_rate": 0.8974358974358975,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 64,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9212225714517575,
+          "observed_rate": 0.9375,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 31,
+      "train_positive": 263,
+      "train_rows": 294,
+      "training_target_observed_prevalence": 0.8945578231292517
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.04384487457696962,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.14595034049050779,
+        "0.1": 0.12762165239920606,
+        "1.0": 0.1180788784936254,
+        "10.0": 0.11508043253102808,
+        "100.0": 0.1218187403086763
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_passing_att",
+        "pre_passing_completions",
+        "pre_passing_td",
+        "pre_passing_int",
+        "pre_passing_pct",
+        "pre_passing_ypa",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 33,
+      "holdout_positive": 136,
+      "holdout_rows": 169,
+      "holdout_target_observed_prevalence": 0.8047337278106509,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.15168546922132656,
+        "calibration_intercept": -0.036726233531795285,
+        "calibration_slope": 0.7738390955205189,
+        "log_loss": 0.46517151009155755,
+        "pr_auc": 0.9186016302334994,
+        "roc_auc": 0.7034313725490197
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "QB",
+      "prevalence_baseline": {
+        "brier": 0.1586410669024198,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.4991255356684546,
+        "pr_auc": 0.8047337278106509,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 1,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": 0.3991645645719074,
+          "observed_rate": 1.0,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 3,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.556873391717389,
+          "observed_rate": 0.6666666666666666,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 15,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6707680332275461,
+          "observed_rate": 0.7333333333333333,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 34,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7593375805632644,
+          "observed_rate": 0.6470588235294118,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 40,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8605595932813479,
+          "observed_rate": 0.8,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 76,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9486800091670902,
+          "observed_rate": 0.8947368421052632,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 41,
+      "train_positive": 221,
+      "train_rows": 262,
+      "training_target_observed_prevalence": 0.8435114503816794
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.0068735735864901,
+      "chosen_l2": 100.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.07915630351905718,
+        "0.1": 0.07392479674852133,
+        "1.0": 0.07014573379294367,
+        "10.0": 0.06677018888100275,
+        "100.0": 0.06642860941398361
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_rushing_car",
+        "pre_rushing_td",
+        "pre_rushing_ypc",
+        "pre_receiving_rec",
+        "pre_receiving_yds",
+        "pre_receiving_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 5,
+      "holdout_positive": 160,
+      "holdout_rows": 165,
+      "holdout_target_observed_prevalence": 0.9696969696969697,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.030790617263975858,
+        "calibration_intercept": 1.2290392927830556,
+        "calibration_slope": 0.853721563685721,
+        "log_loss": 0.14926770445025167,
+        "pr_auc": 0.9706558223914941,
+        "roc_auc": 0.605
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "RB",
+      "prevalence_baseline": {
+        "brier": 0.031003723639869706,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.15128520611436738,
+        "pr_auc": 0.9696969696969697,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 0,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 165,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9320342335038404,
+          "observed_rate": 0.9696969696969697,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 17,
+      "train_positive": 224,
+      "train_rows": 241,
+      "training_target_observed_prevalence": 0.9294605809128631
+    },
+    {
+      "brier_skill_vs_training_prevalence": -0.0028652935877107044,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.22801865608624658,
+        "0.1": 0.21303984971921613,
+        "1.0": 0.18725053024539376,
+        "10.0": 0.17881968234949502,
+        "100.0": 0.18864310475329277
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 22,
+      "holdout_positive": 96,
+      "holdout_rows": 118,
+      "holdout_target_observed_prevalence": 0.8135593220338984,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.15434332612130242,
+        "calibration_intercept": 0.7783592786852551,
+        "calibration_slope": 0.5333199577445554,
+        "log_loss": 0.4823658984705757,
+        "pr_auc": 0.8636406190344906,
+        "roc_auc": 0.5835700757575758
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": false,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "TE",
+      "prevalence_baseline": {
+        "brier": 0.15390235070270036,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.4875539472118857,
+        "pr_auc": 0.8135593220338984,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 9,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5501762572861608,
+          "observed_rate": 0.7777777777777778,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 33,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6269411614522601,
+          "observed_rate": 0.7272727272727273,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 4,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7232845919150184,
+          "observed_rate": 0.5,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 67,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8742315996773046,
+          "observed_rate": 0.8656716417910447,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 5,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9065401405795109,
+          "observed_rate": 1.0,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 32,
+      "train_positive": 105,
+      "train_rows": 137,
+      "training_target_observed_prevalence": 0.7664233576642335
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.04903572176016746,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.13829768774391316,
+        "0.1": 0.13589385060438397,
+        "1.0": 0.12810111643924763,
+        "10.0": 0.1217118789704296,
+        "100.0": 0.12318169589892697
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "holdout_negative": 36,
+      "holdout_positive": 282,
+      "holdout_rows": 318,
+      "holdout_target_observed_prevalence": 0.8867924528301887,
+      "holdout_year": 2024,
+      "logistic_v3": {
+        "brier": 0.09618367969354365,
+        "calibration_intercept": 0.21164046746620285,
+        "calibration_slope": 1.0273686880602293,
+        "log_loss": 0.3280139529597072,
+        "pr_auc": 0.9475217918372288,
+        "roc_auc": 0.7087765957446809
+      },
+      "minimum_holdout_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "WR",
+      "prevalence_baseline": {
+        "brier": 0.10114331515330188,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.35646785373809736,
+        "pr_auc": 0.8867924528301887,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 1,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": 0.3028366663194079,
+          "observed_rate": 1.0,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 4,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6002405966594955,
+          "observed_rate": 1.0,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 84,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7399901198325726,
+          "observed_rate": 0.7380952380952381,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 65,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8784751896789006,
+          "observed_rate": 0.9230769230769231,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 164,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9248258619246498,
+          "observed_rate": 0.9451219512195121,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "train_negative": 72,
+      "train_positive": 440,
+      "train_rows": 512,
+      "training_target_observed_prevalence": 0.859375
+    }
+  ],
+  "pooled_model_metrics": {
+    "brier": 0.10483842008400962,
+    "calibration_intercept": 0.8495985682677609,
+    "calibration_slope": 0.5069294326164481,
+    "log_loss": 0.36538215775256216,
+    "pr_auc": 0.92855022938747,
+    "roc_auc": 0.6730789258612686
+  },
+  "pooled_prevalence_baseline_metrics": {
+    "brier": 0.1065727966914322,
+    "calibration_intercept": 0.5330302639427561,
+    "calibration_slope": 0.7419567748157941,
+    "log_loss": 0.36830422808410734,
+    "pr_auc": 0.9004066095410698,
+    "roc_auc": 0.5670710073272035
+  },
+  "pooled_reliability": [
+    {
+      "bin": 1,
+      "count": 2,
+      "lower_bound": 0.0,
+      "mean_predicted_probability": 0.04172206414049698,
+      "observed_rate": 1.0,
+      "upper_bound": 0.1
+    },
+    {
+      "bin": 2,
+      "count": 3,
+      "lower_bound": 0.1,
+      "mean_predicted_probability": 0.13223566422682356,
+      "observed_rate": 0.6666666666666666,
+      "upper_bound": 0.2
+    },
+    {
+      "bin": 3,
+      "count": 10,
+      "lower_bound": 0.2,
+      "mean_predicted_probability": 0.27919361353284683,
+      "observed_rate": 0.6,
+      "upper_bound": 0.3
+    },
+    {
+      "bin": 4,
+      "count": 9,
+      "lower_bound": 0.3,
+      "mean_predicted_probability": 0.3413721070152752,
+      "observed_rate": 0.7777777777777778,
+      "upper_bound": 0.4
+    },
+    {
+      "bin": 5,
+      "count": 9,
+      "lower_bound": 0.4,
+      "mean_predicted_probability": 0.4605734117802154,
+      "observed_rate": 0.5555555555555556,
+      "upper_bound": 0.5
+    },
+    {
+      "bin": 6,
+      "count": 65,
+      "lower_bound": 0.5,
+      "mean_predicted_probability": 0.5680472560431503,
+      "observed_rate": 0.6923076923076923,
+      "upper_bound": 0.6
+    },
+    {
+      "bin": 7,
+      "count": 76,
+      "lower_bound": 0.6,
+      "mean_predicted_probability": 0.6445675704074262,
+      "observed_rate": 0.7894736842105263,
+      "upper_bound": 0.7
+    },
+    {
+      "bin": 8,
+      "count": 390,
+      "lower_bound": 0.7,
+      "mean_predicted_probability": 0.7593453994411201,
+      "observed_rate": 0.7461538461538462,
+      "upper_bound": 0.8
+    },
+    {
+      "bin": 9,
+      "count": 861,
+      "lower_bound": 0.8,
+      "mean_predicted_probability": 0.8659782225922371,
+      "observed_rate": 0.8629500580720093,
+      "upper_bound": 0.9
+    },
+    {
+      "bin": 10,
+      "count": 1826,
+      "lower_bound": 0.9,
+      "mean_predicted_probability": 0.9489809258306414,
+      "observed_rate": 0.9271631982475356,
+      "upper_bound": 1.0
+    }
+  ],
+  "prediction_rows": 3251,
+  "skipped_group_folds": 5,
+  "source_rows_all_seasons": 6478,
+  "source_rows_primary_period": 4047,
+  "wins_vs_training_prevalence_brier": 13
+}
