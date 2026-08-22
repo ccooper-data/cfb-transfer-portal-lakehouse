@@ -1,0 +1,26 @@
+bundle:
+  name: cfb-transfer-portal-lakehouse
+
+include:
+  - resources/*.yml
+
+variables:
+  cluster_id:
+    description: Existing Databricks cluster ID used by the portfolio job.
+  catalog:
+    description: Unity Catalog catalog.
+    default: main
+  schema:
+    description: Unity Catalog schema.
+    default: cfb_transfer_portal
+  manifest_path:
+    description: Workspace/Volume path to exported raw_manifest.jsonl.
+  resolutions_path:
+    description: Workspace/Volume path to resolutions JSONL.
+
+targets:
+  dev:
+    mode: development
+    default: true
+  prod:
+    mode: production

@@ -1,0 +1,24 @@
+{
+  "audit_version": "resolved_precision_audit_v1",
+  "source": "outputs/resolutions_2021_2026.jsonl",
+  "purpose": "Estimate precision of production auto-resolved entity links.",
+  "selection_policy": {
+    "same_season": "20 deterministic hash-selected resolved rows per portal season, 2021-2026",
+    "next_season_fallback": "census of every production next-season fallback resolution",
+    "review_and_ambiguous": "excluded because they are not production auto-resolutions"
+  },
+  "row_count": 274,
+  "group_counts": {
+    "next_season_fallback_census": 154,
+    "same_season_sample": 120
+  },
+  "same_season_sample_by_year": {
+    "2021": 20,
+    "2022": 20,
+    "2023": 20,
+    "2024": 20,
+    "2025": 20,
+    "2026": 20
+  },
+  "sha256": "d216bcab69949a960423a713ea08981a87edaa3e29f1777d31429c262b84a096"
+}

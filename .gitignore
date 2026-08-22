@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.DS_Store
+# Raw API payloads and local manifest are reproducible but not committed by default.
+data/raw/objects/
+data/raw/manifest.sqlite
+outputs/*.jsonl
+outputs/*.json
+!outputs/.gitkeep
+
+outputs/*.csv
+
+# Local patch backups
+*.before_fallback
+
+# Local runtime state
+manifest.sqlite
+*.egg-info/

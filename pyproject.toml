@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cfb-transfer-portal-lakehouse"
+version = "0.1.0"
+description = "Point-in-time college football transfer portal lakehouse with measured entity resolution"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+cfb-portal = "cfb_portal.cli:main"
+cfb-ingest = "cfb_portal.ingest:main"
+cfb-phase1 = "cfb_portal.pipeline:main"

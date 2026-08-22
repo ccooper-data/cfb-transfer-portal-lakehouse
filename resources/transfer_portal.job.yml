@@ -1,0 +1,34 @@
+resources:
+  jobs:
+    transfer_portal_lakehouse:
+      name: cfb-transfer-portal-lakehouse
+      queue:
+        enabled: true
+      tasks:
+        - task_key: bronze_manifest
+          existing_cluster_id: ${var.cluster_id}
+          notebook_task:
+            notebook_path: ../databricks/notebooks/01_bronze_manifest.py
+            base_parameters:
+              manifest_path: ${var.manifest_path}
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+        - task_key: silver_resolutions
+          depends_on:
+            - task_key: bronze_manifest
+          existing_cluster_id: ${var.cluster_id}
+          notebook_task:
+            notebook_path: ../databricks/notebooks/02_silver_resolutions.py
+            base_parameters:
+              resolutions_path: ${var.resolutions_path}
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+        - task_key: gold_resolver_accounting
+          depends_on:
+            - task_key: silver_resolutions
+          existing_cluster_id: ${var.cluster_id}
+          notebook_task:
+            notebook_path: ../databricks/notebooks/03_gold_resolver_accounting.py
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
