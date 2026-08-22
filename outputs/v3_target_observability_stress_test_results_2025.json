@@ -1,0 +1,1271 @@
+{
+  "evaluated_position_groups": 8,
+  "evaluation_design": {
+    "aggregate_2025_labels_previously_inspected": true,
+    "baseline": "position-group target-observed prevalence estimated only from 2021-2024 training rows",
+    "cohort_source": "frozen outputs/v3_target_observability_cohort_2021_2025.csv",
+    "hyperparameter_selection": "same expanding-year training-only validation using Brier score; 2025 is never used for L2 selection",
+    "interpretation": "target observability, not participation",
+    "label": "2025 temporal stress test",
+    "missing_target_converted_to_zero": false,
+    "model": "same L2-regularized logistic family as locked v3",
+    "post_transfer_predictors": "prohibited",
+    "preprocessing": "fit only on 2021-2024 training rows for each position group",
+    "primary_metric": "Brier score",
+    "pristine_holdout_claim": false,
+    "stress_test_year": 2025,
+    "training_rule": "fit only on portal seasons 2021-2024",
+    "training_years": [
+      2021,
+      2022,
+      2023,
+      2024
+    ]
+  },
+  "pooled_model_metrics": {
+    "brier": 0.14271020054974354,
+    "calibration_intercept": -0.047783940410811875,
+    "calibration_slope": 0.7946393760778778,
+    "log_loss": 0.4551374488639657,
+    "pr_auc": 0.9052883026703293,
+    "roc_auc": 0.6788239431617968
+  },
+  "pooled_prevalence_baseline_metrics": {
+    "brier": 0.14999316420315198,
+    "calibration_intercept": 0.12676905807914565,
+    "calibration_slope": 0.690947131902257,
+    "log_loss": 0.48277478373862653,
+    "pr_auc": 0.8507472830204729,
+    "roc_auc": 0.5700436688226143
+  },
+  "pooled_reliability": [
+    {
+      "bin": 1,
+      "count": 0,
+      "lower_bound": 0.0,
+      "mean_predicted_probability": null,
+      "observed_rate": null,
+      "upper_bound": 0.1
+    },
+    {
+      "bin": 2,
+      "count": 0,
+      "lower_bound": 0.1,
+      "mean_predicted_probability": null,
+      "observed_rate": null,
+      "upper_bound": 0.2
+    },
+    {
+      "bin": 3,
+      "count": 0,
+      "lower_bound": 0.2,
+      "mean_predicted_probability": null,
+      "observed_rate": null,
+      "upper_bound": 0.3
+    },
+    {
+      "bin": 4,
+      "count": 0,
+      "lower_bound": 0.3,
+      "mean_predicted_probability": null,
+      "observed_rate": null,
+      "upper_bound": 0.4
+    },
+    {
+      "bin": 5,
+      "count": 0,
+      "lower_bound": 0.4,
+      "mean_predicted_probability": null,
+      "observed_rate": null,
+      "upper_bound": 0.5
+    },
+    {
+      "bin": 6,
+      "count": 12,
+      "lower_bound": 0.5,
+      "mean_predicted_probability": 0.5716677223500858,
+      "observed_rate": 0.75,
+      "upper_bound": 0.6
+    },
+    {
+      "bin": 7,
+      "count": 189,
+      "lower_bound": 0.6,
+      "mean_predicted_probability": 0.6641598739827371,
+      "observed_rate": 0.6613756613756614,
+      "upper_bound": 0.7
+    },
+    {
+      "bin": 8,
+      "count": 358,
+      "lower_bound": 0.7,
+      "mean_predicted_probability": 0.7616125763291247,
+      "observed_rate": 0.7094972067039106,
+      "upper_bound": 0.8
+    },
+    {
+      "bin": 9,
+      "count": 640,
+      "lower_bound": 0.8,
+      "mean_predicted_probability": 0.8697952822078914,
+      "observed_rate": 0.7828125,
+      "upper_bound": 0.9
+    },
+    {
+      "bin": 10,
+      "count": 1232,
+      "lower_bound": 0.9,
+      "mean_predicted_probability": 0.9348926375629354,
+      "observed_rate": 0.8961038961038961,
+      "upper_bound": 1.0
+    }
+  ],
+  "position_group_results": [
+    {
+      "brier_skill_vs_training_prevalence": 0.06133029238958698,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.11212622778954053,
+        "0.1": 0.11048407523766102,
+        "1.0": 0.1080770412164308,
+        "10.0": 0.10638551215240052,
+        "100.0": 0.1071519321425324
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "pre_interceptions_yds",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.14077030763918968,
+        "calibration_intercept": -0.3954135418487172,
+        "calibration_slope": 0.9775381952477722,
+        "log_loss": 0.44459121460968776,
+        "pr_auc": 0.9164625037984866,
+        "roc_auc": 0.6976167516186803
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "DB",
+      "prevalence_baseline": {
+        "brier": 0.14996788167112687,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.4836228834343549,
+        "pr_auc": 0.8218562874251497,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 212,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7773005992240765,
+          "observed_rate": 0.7169811320754716,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 191,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8826238046814808,
+          "observed_rate": 0.7853403141361257,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 265,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9457032530558198,
+          "observed_rate": 0.9320754716981132,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 119,
+      "stress_test_positive": 549,
+      "stress_test_rows": 668,
+      "stress_test_target_observed_prevalence": 0.8218562874251497,
+      "stress_test_year": 2025,
+      "train_negative": 125,
+      "train_positive": 930,
+      "train_rows": 1055,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.8815165876777251
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.05844403889964234,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.09026906436792423,
+        "0.1": 0.08762775403520218,
+        "1.0": 0.0847873743374735,
+        "10.0": 0.0839632930808926,
+        "100.0": 0.08477260771347891
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.14329222972581118,
+        "calibration_intercept": -0.49124375319997454,
+        "calibration_slope": 0.9324137766151981,
+        "log_loss": 0.4604756722381153,
+        "pr_auc": 0.902797484961716,
+        "roc_auc": 0.6743860542053697
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "DL",
+      "prevalence_baseline": {
+        "brier": 0.15218663111468325,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.499339239266013,
+        "pr_auc": 0.8237082066869301,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 2,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5892256354512204,
+          "observed_rate": 0.5,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 6,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6149668685581381,
+          "observed_rate": 0.6666666666666666,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 3,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7501936437826014,
+          "observed_rate": 1.0,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 120,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8480168858491421,
+          "observed_rate": 0.7,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 198,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9359789037554043,
+          "observed_rate": 0.9040404040404041,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 58,
+      "stress_test_positive": 271,
+      "stress_test_rows": 329,
+      "stress_test_target_observed_prevalence": 0.8237082066869301,
+      "stress_test_year": 2025,
+      "train_negative": 45,
+      "train_positive": 440,
+      "train_rows": 485,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.9072164948453608
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.009115833205478263,
+      "chosen_l2": 100.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.15050206823368292,
+        "0.1": 0.11118785382641617,
+        "1.0": 0.07369204978748446,
+        "10.0": 0.06269480218532318,
+        "100.0": 0.05942197528489783
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.15676571950696105,
+        "calibration_intercept": -20.571419875463608,
+        "calibration_slope": 8.833983718596336,
+        "log_loss": 0.5207389035431997,
+        "pr_auc": 0.904044553189614,
+        "roc_auc": 0.6738310708898945
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "EDGE",
+      "prevalence_baseline": {
+        "brier": 0.15820791648542845,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.5310236747952546,
+        "pr_auc": 0.8210526315789474,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 0,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 95,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.925626442261948,
+          "observed_rate": 0.8210526315789474,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 17,
+      "stress_test_positive": 78,
+      "stress_test_rows": 95,
+      "stress_test_target_observed_prevalence": 0.8210526315789474,
+      "stress_test_year": 2025,
+      "train_negative": 8,
+      "train_positive": 102,
+      "train_rows": 110,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.9272727272727272
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.030670145994807885,
+      "chosen_l2": 100.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.10778910504586035,
+        "0.1": 0.10592121911821484,
+        "1.0": 0.09894777453157463,
+        "10.0": 0.09348998409972765,
+        "100.0": 0.09320223133953989
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_defensive_solo",
+        "pre_defensive_tfl",
+        "pre_defensive_sacks",
+        "pre_defensive_qb_hur",
+        "pre_defensive_pd",
+        "pre_interceptions_int",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.10941057015192938,
+        "calibration_intercept": -4.881571193897938,
+        "calibration_slope": 3.212614472645103,
+        "log_loss": 0.3695563428468971,
+        "pr_auc": 0.9441474437074446,
+        "roc_auc": 0.712413594470046
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "LB",
+      "prevalence_baseline": {
+        "brier": 0.11287238260521308,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.38807602212310793,
+        "pr_auc": 0.8714859437751004,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 114,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8760595228212121,
+          "observed_rate": 0.7982456140350878,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 135,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9150401134691007,
+          "observed_rate": 0.9333333333333333,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 32,
+      "stress_test_positive": 217,
+      "stress_test_rows": 249,
+      "stress_test_target_observed_prevalence": 0.8714859437751004,
+      "stress_test_year": 2025,
+      "train_negative": 47,
+      "train_positive": 428,
+      "train_rows": 475,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.9010526315789473
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.012700393680515898,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.1576773357671142,
+        "0.1": 0.14658610801395114,
+        "1.0": 0.13819851319372797,
+        "10.0": 0.1310655777523729,
+        "100.0": 0.13350583780069433
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_passing_att",
+        "pre_passing_completions",
+        "pre_passing_td",
+        "pre_passing_int",
+        "pre_passing_pct",
+        "pre_passing_ypa",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.1691070298687262,
+        "calibration_intercept": 0.5400316772648325,
+        "calibration_slope": 0.4515343031552126,
+        "log_loss": 0.5245155723418562,
+        "pr_auc": 0.8652928218023381,
+        "roc_auc": 0.6239911481385056
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "QB",
+      "prevalence_baseline": {
+        "brier": 0.17128238357061007,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.5282260720540223,
+        "pr_auc": 0.784037558685446,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 6,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.5861884311781985,
+          "observed_rate": 0.8333333333333334,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 63,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6715976002724697,
+          "observed_rate": 0.6984126984126984,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 16,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7250594733118233,
+          "observed_rate": 0.8125,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 63,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8571214680293978,
+          "observed_rate": 0.7777777777777778,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 65,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9507485056098055,
+          "observed_rate": 0.8615384615384616,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 46,
+      "stress_test_positive": 167,
+      "stress_test_rows": 213,
+      "stress_test_target_observed_prevalence": 0.784037558685446,
+      "stress_test_year": 2025,
+      "train_negative": 74,
+      "train_positive": 357,
+      "train_rows": 431,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.8283062645011601
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.013329699799432104,
+      "chosen_l2": 100.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.04872574279812386,
+        "0.1": 0.046750000869544804,
+        "1.0": 0.045332929799907565,
+        "10.0": 0.04410317535930881,
+        "100.0": 0.04398483573172682
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_rushing_car",
+        "pre_rushing_td",
+        "pre_rushing_ypc",
+        "pre_receiving_rec",
+        "pre_receiving_yds",
+        "pre_receiving_td",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.07089637921520534,
+        "calibration_intercept": -11.217052099978876,
+        "calibration_slope": 4.861733118861272,
+        "log_loss": 0.26735504551542405,
+        "pr_auc": 0.9709365486903327,
+        "roc_auc": 0.7280759162303665
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "RB",
+      "prevalence_baseline": {
+        "brier": 0.07185417378104286,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.27674249874188295,
+        "pr_auc": 0.9227053140096618,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 0,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 0,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 207,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9466499336802957,
+          "observed_rate": 0.9227053140096618,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 16,
+      "stress_test_positive": 191,
+      "stress_test_rows": 207,
+      "stress_test_target_observed_prevalence": 0.9227053140096618,
+      "stress_test_year": 2025,
+      "train_negative": 22,
+      "train_positive": 384,
+      "train_rows": 406,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.9458128078817734
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.10365463406852993,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.20252541661955414,
+        "0.1": 0.19452962774029647,
+        "1.0": 0.17854759361978656,
+        "10.0": 0.1637769217509183,
+        "100.0": 0.16425676991718388
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.16561265667279784,
+        "calibration_intercept": -0.38008393833996906,
+        "calibration_slope": 1.3051971017357817,
+        "log_loss": 0.5016991394577096,
+        "pr_auc": 0.8765488300743609,
+        "roc_auc": 0.7010897435897436
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 6,
+      "model_position_group": "TE",
+      "prevalence_baseline": {
+        "brier": 0.18476433634561762,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.5569685549378944,
+        "pr_auc": 0.7572815533980582,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 0,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 104,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6621075601777293,
+          "observed_rate": 0.625,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 0,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 88,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8688888442299654,
+          "observed_rate": 0.8863636363636364,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 14,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.908999792636637,
+          "observed_rate": 0.9285714285714286,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 50,
+      "stress_test_positive": 156,
+      "stress_test_rows": 206,
+      "stress_test_target_observed_prevalence": 0.7572815533980582,
+      "stress_test_year": 2025,
+      "train_negative": 54,
+      "train_positive": 201,
+      "train_rows": 255,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.788235294117647
+    },
+    {
+      "brier_skill_vs_training_prevalence": 0.037012239891987875,
+      "chosen_l2": 10.0,
+      "expanding_validation_brier_by_l2": {
+        "0.01": 0.12008584601795304,
+        "0.1": 0.11868387454379868,
+        "1.0": 0.1139891362536394,
+        "10.0": 0.110310239405753,
+        "100.0": 0.11099756489949124
+      },
+      "features": [
+        "baseline_pre_production",
+        "pre_receiving_rec",
+        "pre_receiving_td",
+        "pre_receiving_ypr",
+        "pre_receiving_long",
+        "pre_rushing_yds",
+        "pre_rushing_td",
+        "rating",
+        "stars"
+      ],
+      "logistic_v3": {
+        "brier": 0.1698346077553485,
+        "calibration_intercept": 0.16049670096025495,
+        "calibration_slope": 0.6027149722904924,
+        "log_loss": 0.5302837314620941,
+        "pr_auc": 0.8634780650184243,
+        "roc_auc": 0.6258791208791209
+      },
+      "minimum_stress_test_rows": 20,
+      "minimum_train_class_rows": 5,
+      "minimum_train_rows": 40,
+      "model_beats_training_prevalence_brier": true,
+      "model_converged": true,
+      "model_iterations": 7,
+      "model_position_group": "WR",
+      "prevalence_baseline": {
+        "brier": 0.17636216657239678,
+        "calibration_intercept": null,
+        "calibration_slope": null,
+        "log_loss": 0.5488604566755343,
+        "pr_auc": 0.7844827586206896,
+        "roc_auc": 0.5
+      },
+      "reliability": [
+        {
+          "bin": 1,
+          "count": 0,
+          "lower_bound": 0.0,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.1
+        },
+        {
+          "bin": 2,
+          "count": 0,
+          "lower_bound": 0.1,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.2
+        },
+        {
+          "bin": 3,
+          "count": 0,
+          "lower_bound": 0.2,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.3
+        },
+        {
+          "bin": 4,
+          "count": 0,
+          "lower_bound": 0.3,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 0,
+          "lower_bound": 0.4,
+          "mean_predicted_probability": null,
+          "observed_rate": null,
+          "upper_bound": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 4,
+          "lower_bound": 0.5,
+          "mean_predicted_probability": 0.541107702557349,
+          "observed_rate": 0.75,
+          "upper_bound": 0.6
+        },
+        {
+          "bin": 7,
+          "count": 16,
+          "lower_bound": 0.6,
+          "mean_predicted_probability": 0.6666612434836914,
+          "observed_rate": 0.75,
+          "upper_bound": 0.7
+        },
+        {
+          "bin": 8,
+          "count": 127,
+          "lower_bound": 0.7,
+          "mean_predicted_probability": 0.7402995494959492,
+          "observed_rate": 0.6771653543307087,
+          "upper_bound": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 64,
+          "lower_bound": 0.8,
+          "mean_predicted_probability": 0.8749086130825539,
+          "observed_rate": 0.765625,
+          "upper_bound": 0.9
+        },
+        {
+          "bin": 10,
+          "count": 253,
+          "lower_bound": 0.9,
+          "mean_predicted_probability": 0.9245313474608325,
+          "observed_rate": 0.8458498023715415,
+          "upper_bound": 1.0
+        }
+      ],
+      "status": "evaluated",
+      "stress_test_negative": 100,
+      "stress_test_positive": 364,
+      "stress_test_rows": 464,
+      "stress_test_target_observed_prevalence": 0.7844827586206896,
+      "stress_test_year": 2025,
+      "train_negative": 108,
+      "train_positive": 722,
+      "train_rows": 830,
+      "train_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "training_target_observed_prevalence": 0.8698795180722891
+    }
+  ],
+  "prediction_rows": 2431,
+  "skipped_position_groups": 0,
+  "source_rows": 6478,
+  "wins_vs_training_prevalence_brier": 8
+}
